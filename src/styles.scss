@@ -1,0 +1,16 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./styles/delorean.scss";
+@import "./styles/loading.scss";
+
+.intro-1 {
+  background: url("assets/img/banner.png") no-repeat center center;
+  background-size: cover;
+}
+
+.view[_ngcontent-c2] {
+  height: 100vh;
+}
+
+body{
+  background: url("assets/img/background.png") repeat center center;
+}
