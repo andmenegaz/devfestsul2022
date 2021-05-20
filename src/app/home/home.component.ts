@@ -34,8 +34,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.speakers$ = this.speakerService.getSpeakerList({
-      orderByChild: 'featured',
-      equalTo: true
+      orderByChild: 'name',
     });
 
     // Default colors for Ticket Types
