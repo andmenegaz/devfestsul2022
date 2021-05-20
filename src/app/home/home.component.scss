@@ -51,6 +51,7 @@
   -moz-animation: bounce 2s infinite;
   -webkit-animation: bounce 2s infinite;
   animation: bounce 2s infinite;
+  color: #000000;
 }
 
 @keyframes bounce {
@@ -86,6 +87,7 @@
   height: 25vh;
 }
 
-.elegant-color-dark{
+.btn-primary{
   background-color: #000000 !important;
+  border-radius: 0;
 }

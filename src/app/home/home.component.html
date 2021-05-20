@@ -7,7 +7,7 @@
     <div class="full-bg-img flex-center">
       <div class="container text-center">
         <div class="container text-center"><img class="logo-banner" src="../../assets/img/logo.png"/></div>
-        <a *ngIf="config?.ticketURL" target="_blank" rel="noopener" [href]="config?.ticketURL" class="btn btn-primary btn-lg" rel="nofollow">Garanta seu ingresso!</a>
+        <a *ngIf="config?.ticketURL" target="_blank" rel="noopener" [href]="config?.ticketURL" class="btn btn-primary btn-lg" rel="nofollow">Garanta seu ingresso</a>
       </div>
       <div class="arrow bounce">
         <a class="fa fa-chevron-down fa-1x" [ngx-scroll-to]="'#about'"></a>
@@ -52,19 +52,6 @@
   <section class="text-center" *ngIf="config?.eventType === 'Other'">
     <p [innerHTML]="config?.eventDescription"></p>
   </section>
-  <section class="text-center" *ngIf="config?.eventGoogle || config?.eventFacebook || config?.eventTwitter || config?.eventInstagram">
-    <!--Social buttons-->
-    <div class="social-section mb-3">
-      <h5 class="title mt-3 mb-4">Nos siga nas redes sociais</h5>
-      <ul>
-        <!-- <li *ngIf="config?.eventGoogle"><a class="btn-social-all" href="https://plus.google.com/{{ config?.eventGoogle }}" title="Google+" target="_blank" rel="noopener"><i class="fa fa-google-plus"></i></a></li>
-        <li *ngIf="config?.eventFacebook"><a class="btn-social-all" href="https://www.facebook.com/{{ config?.eventFacebook }}" title="Facebook" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a></li>
-        <li *ngIf="config?.eventTwitter"><a class="btn-social-all" href="https://twitter.com/{{ config?.eventTwitter }}" title="Twitter" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li> -->
-        <li *ngIf="config?.eventInstagram"><a class="btn-social-all" href="https://www.instagram.com/{{ config?.eventInstagram }}" title="Instagram" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a></li>
-      </ul>
-    </div>
-    <!--/.Social buttons-->
-  </section>
   <!--Section: About-->
 
   <div class="divider-new pt-5" *ngIf="(speakers$ | async)?.length > 0">
@@ -95,7 +82,7 @@
     <h5>Seja lega. Seja respeitoso. Seja colaborativo.</h5>
     <p>{{ config?.eventName }} é um evento dedicado a prover um ambiente livre de assédios para todes.</p>
     <p>
-      BAntes de participar, reveja o  <a routerLink="/code-of-conduct">{{ config?.eventName }} Código de Conduta</a>.
+      Antes de participar, reveja o  <a routerLink="/code-of-conduct">Código de conduta do {{ config?.eventName }}</a>.
       <br/>Este Código de Conduta se aplica a todos os participantes, palestrantes, voluntários, fornecedores e organizadoras do IWD Brasil 2021.
       <br/>Por favor <a href="mailto:{{ config?.eventEmail }}?subject=Code of Conduct - {{ config?.eventName }}" target="_blank" rel="noopener">entre em contato conosco</a> se tiver alguma dúvida.
     </p>
