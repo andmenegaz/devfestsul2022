@@ -15,6 +15,11 @@ body{
   background: url("assets/img/background.png") repeat center center;
 }
 
-.elegant-color-dark{
+.color-black{
   background-color: #000000 !important;
+}
+
+.divider-new:before, .divider-new:after {
+  background-image: url("assets/img/line.png") !important;
+  background-size: cover !important;
 }

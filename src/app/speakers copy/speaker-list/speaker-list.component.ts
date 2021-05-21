@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
-import { AuthService } from './../../services/auth/auth.service';
-import { SpeakerService } from './../shared/speaker.service';
-import { Speaker } from './../shared/speaker';
+import { AuthService } from '../../services/auth/auth.service';
+import { SpeakerService } from '../shared/speaker.service';
+import { Speaker } from '../shared/speaker';
 import { FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';

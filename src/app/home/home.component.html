@@ -6,7 +6,8 @@
   <section class="view intro-1">
     <div class="full-bg-img flex-center">
       <div class="container text-center">
-        <div class="container text-center"><img class="logo-banner" src="../../assets/img/logo.png"/></div>
+        <div class="container text-center"><img class="logo-banner" src="../../assets/img/logo.png" alt="PRIDE WEEK" /></div>
+      <div><h3>21/06 • 25/06</h3></div>
         <a *ngIf="config?.ticketURL" target="_blank" rel="noopener" [href]="config?.ticketURL" class="btn btn-primary btn-lg" rel="nofollow">Garanta seu ingresso</a>
       </div>
       <div class="arrow bounce">
@@ -83,7 +84,7 @@
     <p>{{ config?.eventName }} é um evento dedicado a prover um ambiente livre de assédios para todes.</p>
     <p>
       Antes de participar, reveja o  <a routerLink="/code-of-conduct">Código de conduta do {{ config?.eventName }}</a>.
-      <br/>Este Código de Conduta se aplica a todes que irão participar, palestrar, organizar fornecer ou estar envolvido de qualquer forma ao Pride Week 2021.
+      <br/>Este Código de Conduta se aplica a todes que irão participar, palestrar, organizar fornecer ou se envolver de qualquer forma ao Pride Week 2021.
       <br/>Por favor <a href="mailto:{{ config?.eventEmail }}?subject=Code of Conduct - {{ config?.eventName }}" target="_blank" rel="noopener">entre em contato conosco</a> se tiver alguma dúvida.
     </p>
   </section>

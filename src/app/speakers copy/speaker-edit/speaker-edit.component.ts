@@ -1,7 +1,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from './../../services/auth/auth.service';
-import { SpeakerService } from './../shared/speaker.service';
-import { Speaker } from './../shared/speaker';
+import { AuthService } from '../../services/auth/auth.service';
+import { SpeakerService } from '../shared/speaker.service';
+import { Speaker } from '../shared/speaker';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

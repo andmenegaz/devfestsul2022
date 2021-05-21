@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Speaker } from './speaker';
-import { firebaseConfig } from './../../../environments/firebase.config';
+import { firebaseConfig } from '../../../environments/firebase.config';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
