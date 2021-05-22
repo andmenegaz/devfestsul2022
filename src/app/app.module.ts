@@ -5,6 +5,7 @@ import { LevelService } from './sponsors/shared/level.service';
 import { SponsorService } from './sponsors/shared/sponsor.service';
 import { UserService } from './admin/shared/user/user.service';
 import { SpeakerService } from './speakers/shared/speaker.service';
+import { OrganizerService } from './orgainzers/shared/organizer.service';
 import { SectionService } from './sessions/shared/section.service';
 import { SessionService } from './sessions/shared/session.service';
 import { AuthGuard } from './services/auth/auth.guard';
@@ -39,6 +40,9 @@ import { SessionEditComponent } from './sessions/session-edit/session-edit.compo
 import { SpeakerNewComponent } from './speakers/speaker-new/speaker-new.component';
 import { SpeakerEditComponent } from './speakers/speaker-edit/speaker-edit.component';
 import { SpeakerListComponent } from './speakers/speaker-list/speaker-list.component';
+import { OrganizerNewComponent } from './orgainzers/organizer-new/organizer-new.component';
+import { OrganizerEditComponent } from './orgainzers/organizer-edit/organizer-edit.component';
+import { OrganizerListComponent } from './orgainzers/organizer-list/organizer-list.component';
 import { SiteConfigComponent } from './admin/site-config/site-config.component';
 import { SponsorListComponent } from './sponsors/sponsor-list/sponsor-list.component';
 import { SponsorNewComponent } from './sponsors/sponsor-new/sponsor-new.component';
@@ -68,6 +72,9 @@ import { CocComponent } from './coc/coc.component';
     SpeakerNewComponent,
     SpeakerEditComponent,
     SpeakerListComponent,
+    OrganizerNewComponent,
+    OrganizerEditComponent,
+    OrganizerListComponent,
     SiteConfigComponent,
     SponsorListComponent,
     SponsorNewComponent,
@@ -103,6 +110,7 @@ import { CocComponent } from './coc/coc.component';
     SessionService,
     SectionService,
     SpeakerService,
+    OrganizerService,
     SponsorService,
     LevelService,
     TicketService,

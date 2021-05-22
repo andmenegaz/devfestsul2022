@@ -1,0 +1,104 @@
+<app-top-menu></app-top-menu>
+
+<div class="between-sections"><br><br></div>
+<div class="container">
+  <!--Section: organizers-->
+  <section class="section team-section pb-3">
+    <div class="text-center" *ngIf="isLoggedIn() && isAdmin()">
+      <button type="button" class="btn btn-success" routerLink="/organizers/new">Create Organizer</button>
+    </div>
+    <div class="row text-center" *ngIf="(organizers | async)?.length !== 0 && organizers | async as organizers">
+      <div *ngFor="let organizer of organizers" class="col-lg-3 col-md-6 mb-r" style="padding-left: 40px; padding-right: 40px; padding-bottom: 50px; margin: 0 auto;">
+        <div class="avatar show-modal" (click)="showModal(organizer)" title="{{ organizer.name }}" alt="{{ organizer.name }}">
+          <img *ngIf="!organizer.photoURL" class="rounded-circle z-depth-1" style="background-image: url('../../../assets/img/user-default.png')">
+          <img *ngIf="organizer.photoURL" class="rounded-circle z-depth-1" [ngStyle]="{'background-image': 'url(' + organizer.photoURL + ')'}">
+        </div>
+        <button type="button" class="btn btn-sm btn-primary" *ngIf="isLoggedIn() && isAdmin()" routerLink="/organizers/{{ organizer.$key }}/edit">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-danger" *ngIf="isLoggedIn() && isAdmin()" (click)="deleteorganizer(organizer)">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+        <h4 class="show-modal" (click)="showModal(organizer)" [innerHTML]="organizer.name"></h4>
+        <h6>
+          <span *ngIf="organizer.title" [innerHTML]="organizer.title"></span>
+          <br/>
+          <strong *ngIf="organizer.company">@
+            <span [innerHTML]="organizer.company"></span>
+          </strong>
+        </h6>
+        <a *ngIf="organizer.googleLink" class="icons-sm gplus-ic" href="https://plus.google.com/{{ organizer.googleLink }}" target="_blank" rel="noopener">
+          <i class="fa fa-google-plus" aria-hidden="true"></i>
+        </a>
+        <a *ngIf="organizer.facebookLink" class="icons-sm fb-ic" href="https://www.facebook.com/{{ organizer.facebookLink }}" target="_blank" rel="noopener">
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
+        <a *ngIf="organizer.twitterLink" class="icons-sm tw-ic" href="https://twitter.com/{{ organizer.twitterLink }}" target="_blank" rel="noopener">
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a *ngIf="organizer.linkedinLink" class="icons-sm li-ic" href="https://www.linkedin.com/in/{{ organizer.linkedinLink }}" target="_blank" rel="noopener">
+          <i class="fa fa-linkedin" aria-hidden="true"></i>
+        </a>
+        <a *ngIf="organizer.githubLink" class="icons-sm git-ic" href="https://github.com/{{ organizer.githubLink }}" target="_blank" rel="noopener">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        <a *ngIf="organizer.websiteLink" class="icons-sm email-ic" href="{{ organizer.websiteLink }}" target="_blank" rel="noopener">
+          <i class="fa fa-chrome" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <div class="text-center" *ngIf="(organizers | async)?.length === 0">
+      <h5>Stay tuned! organizers are being added soon!</h5>
+    </div>
+  </section>
+  <!--Section: organizers-->
+</div>
+<div class="between-sections"><br><br></div>
+
+
+<!-- organizer Detail Modal -->
+<div mdbModal #organizerModal="mdb-modal" [config]="{keyboard: false}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="organizerModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="organizerModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="modalLabel">
+          <strong>
+            <span [innerHTML]="organizerDetail?.name"></span>
+          </strong>
+          <h6 *ngIf="organizerDetail?.title && organizerDetail?.company">
+            <span *ngIf="organizerDetail?.title" [innerHTML]="organizerDetail?.title"></span>
+            <strong *ngIf="organizerDetail?.company"> @
+              <span [innerHTML]="organizerDetail?.company"></span>
+            </strong>
+          </h6>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <p [innerHTML]="organizerDetail?.description"></p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <a *ngIf="organizerDetail?.googleLink" class="icons-sm gplus-ic" href="https://plus.google.com/{{ organizerDetail?.googleLink }}" target="_blank" rel="noopener">
+          <i class="fa fa-google-plus" aria-hidden="true"></i>
+        </a>
+        <a *ngIf="organizerDetail?.facebookLink" class="icons-sm fb-ic" href="https://www.facebook.com/{{ organizerDetail?.facebookLink }}" target="_blank" rel="noopener">
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
+        <a *ngIf="organizerDetail?.twitterLink" class="icons-sm tw-ic" href="https://twitter.com/{{ organizerDetail?.twitterLink }}" target="_blank" rel="noopener">
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a *ngIf="organizerDetail?.linkedinLink" class="icons-sm li-ic" href="https://www.linkedin.com/in/{{ organizerDetail?.linkedinLink }}" target="_blank" rel="noopener">
+          <i class="fa fa-linkedin" aria-hidden="true"></i>
+        </a>
+        <a *ngIf="organizerDetail?.githubLink" class="icons-sm git-ic" href="https://github.com/{{ organizerDetail?.githubLink }}" target="_blank" rel="noopener">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        <a *ngIf="organizerDetail?.websiteLink" class="icons-sm email-ic" href="{{ organizerDetail?.websiteLink }}" target="_blank" rel="noopener">
+          <i class="fa fa-chrome" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<app-top-menu></app-top-menu>
+
+<div class="between-sections"><br><br></div>
+<div class="container">
+  <!--Section: Organizer-->
+  <section class="section">
+    <form autocomplete="off" novalidate>
+      <legend>Edit Organizer</legend>
+      <br>
+      <div class="md-form">
+        <input mdbActive type="text" id="name" class="form-control" [(ngModel)]="organizer.name" name="name">
+        <label for="name" [class.active]="organizer.name && organizer.name.length > 0">Organizer Name:</label>
+      </div>
+      <div class="md-form">
+        <input mdbActive type="text" id="title" class="form-control" [(ngModel)]="organizer.title" name="title">
+        <label for="title" [class.active]="organizer.title && organizer.title.length > 0">Job Title:</label>
+      </div>
+      <div class="md-form">
+        <input mdbActive type="text" id="company" class="form-control" [(ngModel)]="organizer.company" name="company">
+        <label for="company" [class.active]="organizer.company && organizer.company.length > 0">Company:</label>
+      </div>
+      <div class="md-form">
+        <textarea mdbActive type="text" id="description" class="md-textarea md-textarea-auto form-control" style="height: 100px" [(ngModel)]="organizer.description" name="description"></textarea>
+        <label for="description" [class.active]="organizer.description && organizer.description.length > 0">Organizer Bio:</label>
+      </div>
+      <div class="form-group" style="padding-bottom: 25px;">
+        <label for="photoURL">Organizer Photo:</label>
+        <input type="file" class="form-control-file" id="photoURL" accept="image/jpeg,image/jpg,image/png,image/x-png" aria-describedby="Organizer Photo">
+      </div>
+      <div class="form-group" style="padding-bottom: 25px;">
+        <input type="checkbox" id="featured" [(ngModel)]="organizer.featured" name="featured">
+        <label for="featured">Featured Organizer</label>
+      </div>
+      <div class="md-form">
+        <input mdbActive type="text" id="googleLink" class="form-control" [(ngModel)]="organizer.googleLink" name="googleLink">
+        <label for="googleLink" [class.active]="organizer.googleLink && organizer.googleLink.length > 0">Google+: <em>(only add the handle)</em></label>
+      </div>
+      <div class="md-form">
+        <input mdbActive type="text" id="facebookLink" class="form-control" [(ngModel)]="organizer.facebookLink" name="facebookLink">
+        <label for="facebookLink" [class.active]="organizer.facebookLink && organizer.facebookLink.length > 0">Facebook: <em>(only add the handle)</em></label>
+      </div>
+      <div class="md-form">
+        <input mdbActive type="text" id="twitterLink" class="form-control" [(ngModel)]="organizer.twitterLink" name="twitterLink">
+        <label for="twitterLink" [class.active]="organizer.twitterLink && organizer.twitterLink.length > 0">Twitter: <em>(only add the handle)</em></label>
+      </div>
+      <div class="md-form">
+        <input mdbActive type="text" id="linkedinLink" class="form-control" [(ngModel)]="organizer.linkedinLink" name="linkedinLink">
+        <label for="linkedinLink" [class.active]="organizer.linkedinLink && organizer.linkedinLink.length > 0">LinkedIn: <em>(ex. in/handle OR company/handle)</em></label>
+      </div>
+      <div class="md-form">
+        <input mdbActive type="text" id="githubLink" class="form-control" [(ngModel)]="organizer.githubLink" name="githubLink">
+        <label for="githubLink" [class.active]="organizer.githubLink && organizer.githubLink.length > 0">GitHub: <em>(only add the handle)</em></label>
+      </div>
+      <div class="md-form">
+        <input mdbActive type="text" id="websiteLink" class="form-control" [(ngModel)]="organizer.websiteLink" name="websiteLink">
+        <label for="websiteLink" [class.active]="organizer.websiteLink && organizer.websiteLink.length > 0">Website:</label>
+      </div>
+    </form>
+    <br><br>
+    <div class="text-center">
+      <button class="btn btn-primary" (click)="updateOrganizer()">Save Changes</button>
+    </div>
+  </section>
+</div>

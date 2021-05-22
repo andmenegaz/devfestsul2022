@@ -23,6 +23,7 @@ export class SiteConfig {
   eventInstagram: string;
   eventHashtag: string;
   speakerURL: string;
+  organizerURL: string;
   ticketURL: string;
   sponsorURL: string;
 

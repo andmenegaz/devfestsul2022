@@ -12,6 +12,9 @@ import { SponsorNewComponent } from './sponsors/sponsor-new/sponsor-new.componen
 import { SpeakerListComponent } from './speakers/speaker-list/speaker-list.component';
 import { SpeakerEditComponent } from './speakers/speaker-edit/speaker-edit.component';
 import { SpeakerNewComponent } from './speakers/speaker-new/speaker-new.component';
+import { OrganizerListComponent } from './orgainzers/organizer-list/organizer-list.component';
+import { OrganizerEditComponent } from './orgainzers/organizer-edit/organizer-edit.component';
+import { OrganizerNewComponent } from './orgainzers/organizer-new/organizer-new.component';
 import { SessionEditComponent } from './sessions/session-edit/session-edit.component';
 import { SessionNewComponent } from './sessions/session-new/session-new.component';
 import { SessionListComponent } from './sessions/session-list/session-list.component';
@@ -129,6 +132,29 @@ export const routerConfig: Route[] = [{
     }
   }]
 }, {
+  path: 'organizers',
+  children: [{
+    path: 'new',
+    component: OrganizerNewComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'New Organizer' }
+  }, {
+    path: ':id',
+    children: [{
+      path: 'edit',
+      component: OrganizerEditComponent,
+      canActivate: [AuthGuard],
+      data: { title: 'Edit Organizer' }
+    }]
+  }, {
+    path: '',
+    component: OrganizerListComponent,
+    data: {
+      title: 'Organizers',
+      preload: true
+    }
+  }]
+},{
   path: 'sponsors',
   children: [{
     path: 'new',

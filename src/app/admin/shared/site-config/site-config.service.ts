@@ -47,6 +47,7 @@ export class SiteConfigService {
             eventTwitter: siteConfig.eventTwitter ? siteConfig.eventTwitter : null,
             eventHashtag: siteConfig.eventHashtag ? siteConfig.eventHashtag : null,
             speakerURL: siteConfig.speakerURL ? siteConfig.speakerURL : null,
+            organizerURL: siteConfig.organizerURL ? siteConfig.organizerURL : null,
             ticketURL: siteConfig.ticketURL ? siteConfig.ticketURL : null,
             sponsorURL: siteConfig.sponsorURL ? siteConfig.sponsorURL : null,
 
@@ -82,6 +83,7 @@ export class SiteConfigService {
         eventInstagram: siteConfig.eventInstagram ? siteConfig.eventInstagram : null,
         eventHashtag: siteConfig.eventHashtag ? siteConfig.eventHashtag : null,
         speakerURL: siteConfig.speakerURL ? siteConfig.speakerURL : null,
+        organizerURL: siteConfig.organizerURL ? siteConfig.organizerURL : null,
         ticketURL: siteConfig.ticketURL ? siteConfig.ticketURL : null,
         sponsorURL: siteConfig.sponsorURL ? siteConfig.sponsorURL : null,
 

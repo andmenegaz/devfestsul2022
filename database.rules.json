@@ -34,14 +34,18 @@
       },
       "speakers": {
         ".write": "auth != null && auth.provider == 'google' && root.child('admins').child(auth.uid).exists()",
-      	".indexOn": "featured"
+        ".indexOn": "featured"
+      },
+      "organizers": {
+        ".write": "auth != null && auth.provider == 'google' && root.child('admins').child(auth.uid).exists()",
+        ".indexOn": "featured"
       },
       "sponsors": {
         ".write": "auth != null && auth.provider == 'google' && root.child('admins').child(auth.uid).exists()"
       },
       "tickets": {
         ".write": "auth != null && auth.provider == 'google' && root.child('admins').child(auth.uid).exists()",
-      	".indexOn": "active"
+        ".indexOn": "active"
       }
     }
   }
