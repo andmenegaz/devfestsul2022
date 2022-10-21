@@ -20,7 +20,7 @@ export class SponsorListComponent implements OnInit {
   public sponsors: FirebaseListObservable<Sponsor[]>;
   public levels: FirebaseListObservable<Level[]>;
   level: Level = new Level();
-  siteConfig: FirebaseObjectObservable<SiteConfig>;
+  siteConfig$: FirebaseObjectObservable<SiteConfig>;
 
   @ViewChild('levelModal') public levelModal: ModalDirective;
 
@@ -35,7 +35,7 @@ export class SponsorListComponent implements OnInit {
   ngOnInit() {
     this.sponsors = this.sponsorService.getSponsorList();
     this.levels = this.levelService.getLevelList({ orderByChild: 'rank' });
-    this.siteConfig = this.siteConfigService.getConfig();
+    this.siteConfig$ = this.siteConfigService.getConfig();
   }
 
   isLoggedIn() {

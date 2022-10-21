@@ -1,11 +1,11 @@
 <app-top-menu></app-top-menu>
 
 <div class="between-sections"><br><br></div>
-<div class="container">
+<div class="container" *ngIf="siteConfig$ | async as config">
   <!--Section: Sponsors-->
   <section class="section pb-3">
     <!--Section heading-->
-    <h1 class="section-heading">Quem apoia o Pride Week 2021</h1>
+    <h1 class="section-heading">Quem apoia o {{ config?.eventName }}</h1>
     <div class="text-center" *ngIf="isLoggedIn() && isAdmin()">
       <button class="btn btn-success" (click)="levelModal.show()">Create Level</button>
       <button class="btn btn-primary" routerLink="/sponsors/new">Create Sponsor</button>
