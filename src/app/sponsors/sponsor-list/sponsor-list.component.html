@@ -1,7 +1,7 @@
 <app-top-menu></app-top-menu>
 
 <div class="between-sections"><br><br></div>
-<div class="container" *ngIf="siteConfig$ | async as config">
+<div class="container" *ngIf="siteConfigService.siteConfig as config">
   <!--Section: Sponsors-->
   <section class="section pb-3">
     <!--Section heading-->

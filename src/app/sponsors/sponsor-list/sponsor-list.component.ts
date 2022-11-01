@@ -6,7 +6,6 @@ import { Sponsor } from './../shared/sponsor';
 import { Level } from './../shared/level';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth/auth.service';
-import { SiteConfig } from './../../admin/shared/site-config/site-config';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -20,7 +19,6 @@ export class SponsorListComponent implements OnInit {
   public sponsors: Observable<Sponsor[]>;
   public levels: Observable<Level[]>;
   level: Level = new Level();
-  siteConfig$: Observable<SiteConfig>;
 
   @ViewChild('levelModal') public levelModal: ModalDirective;
 
@@ -35,7 +33,6 @@ export class SponsorListComponent implements OnInit {
   ngOnInit() {
     this.sponsors = this.sponsorService.getSponsorList();
     this.levels = this.levelService.getLevelList();
-    this.siteConfig$ = this.siteConfigService.getConfig();
   }
 
   addLevel() {

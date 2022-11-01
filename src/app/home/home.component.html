@@ -1,220 +1,218 @@
-<div *ngIf="siteConfig$ | async as config">
-  <header>
-    <app-top-menu></app-top-menu>
-    <!--Intro Section-->
-    <section class="view intro-1">
-      <div class="full-bg-img flex-center">
-        <div class="container text-center">
-          <div class="container text-center"><img class="logo-banner" src="../../assets/img/logo.png" alt="DEV FEST" />
-          </div>
-          <div>
-            <h3>21/06 • 25/06</h3>
-          </div>
-          <a *ngIf="config?.ticketURL" target="_blank" rel="noopener" [href]="config?.ticketURL"
-            class="btn btn-primary btn-lg" rel="nofollow">Garanta seu ingresso</a>
+<header *ngIf="siteConfigService.siteConfig as config">
+  <app-top-menu></app-top-menu>
+  <!--Intro Section-->
+  <section class="view intro-1">
+    <div class="full-bg-img flex-center">
+      <div class="container text-center">
+        <div class="container text-center"><img class="logo-banner" src="../../assets/img/logo.png" alt="DEV FEST" />
         </div>
-        <div class="arrow bounce">
-          <a class="fa fa-chevron-down fa-1x" [ngx-scroll-to]="'#about'"></a>
+        <div>
+          <h3>21/06 • 25/06</h3>
         </div>
+        <a *ngIf="config?.ticketURL" target="_blank" rel="noopener" [href]="config?.ticketURL"
+          class="btn btn-primary btn-lg" rel="nofollow">Garanta seu ingresso</a>
       </div>
-    </section>
-  </header>
-  <div class="container">
-    <div id="about" class="divider-new pt-5">
-      <h2 class="h2-responsive">Sobre</h2>
-    </div>
-
-    <!--Section: About-->
-    <section class="text-center" *ngIf="!config?.eventType || config?.eventType === 'DevFest'">
-      <p>
-        <strong>GDG DevFests</strong> are large, community-run developer events happening around the globe focused on
-        community
-        building and learning about Google’s technologies. Each DevFest is carefully crafted for you by your local GDG
-        community
-        to bring in awesome speakers, great topics, and lots fun! While no two events will be exactly alike, each GDG
-        DevFest will,
-        at its core, be powered by a shared belief that when developers come together to exchange ideas,
-        amazing&nbsp;things&nbsp;can&nbsp;happen!
-      </p>
-      <p>
-        <strong>{{ config?.eventName }}</strong> is a 100% community organized full-day developer conference featuring
-        awesome
-        world-class speakers from technology leaders within the community as well as Google product
-        team&nbsp;developers.
-      </p>
-    </section>
-    <section class="text-center" *ngIf="config?.eventType === 'IWD'">
-      <p>
-        <strong>International Women's Day</strong> (IWD) is marked on March 8th every year. In different regions around
-        the globe,
-        the focus of celebrations ranges from general respect and appreciation for women to a celebration of women's
-        economic,
-        political, and social achievements. Each IWD will be tailored to local communities of women in technology.
-        Summits and meetups
-        around the world may feature hands-on coding workshops, inspiring speakers, and networking opportunities.
-      </p>
-      <p>
-        <strong>{{ config?.eventName }}</strong> is a 100% community organized event that aims to provide visibility,
-        community, and resources
-        for women in technology. Our event is designed to promote an environment of inclusivity for women in tech, as
-        well as celebrate
-        women innovators and leaders in the industry.
-      </p>
-    </section>
-    <section class="text-center" *ngIf="config?.eventType === 'Other'">
-      <p [innerHTML]="config?.eventDescription"></p>
-    </section>
-    <section class="text-center"
-      *ngIf="config?.eventGoogle || config?.eventFacebook || config?.eventTwitter || config?.eventInstagram">
-      <!--Social buttons-->
-      <div class="social-section mb-3">
-        <h5 class="title mt-3 mb-4">Nos siga nas redes sociais</h5>
-        <ul>
-          <li *ngIf="config?.eventGoogle"><a class="btn-social-all"
-              href="https://plus.google.com/{{ config?.eventGoogle }}" title="Google+" target="_blank" rel="noopener"><i
-                class="fa fa-google-plus"></i></a></li>
-          <li *ngIf="config?.eventFacebook"><a class="btn-social-all"
-              href="https://www.facebook.com/{{ config?.eventFacebook }}" title="Facebook" target="_blank"
-              rel="noopener"><i class="fa fa-facebook"></i></a></li>
-          <li *ngIf="config?.eventTwitter"><a class="btn-social-all"
-              href="https://twitter.com/{{ config?.eventTwitter }}" title="Twitter" target="_blank" rel="noopener"><i
-                class="fa fa-twitter"></i></a></li>
-          <li *ngIf="config?.eventInstagram"><a class="btn-social-all"
-              href="https://www.instagram.com/{{ config?.eventInstagram }}" title="Instagram" target="_blank"
-              rel="noopener"><i class="fa fa-instagram"></i></a></li>
-        </ul>
+      <div class="arrow bounce">
+        <a class="fa fa-chevron-down fa-1x" [ngx-scroll-to]="'#about'"></a>
       </div>
-      <!--/.Social buttons-->
-    </section>
-    <!--Section: About-->
-
-    <div class="divider-new pt-5" *ngIf="(speakers$ | async)?.length > 0">
-      <h2 class="h2-responsive">Palestrantes</h2>
     </div>
+  </section>
+</header>
+<div class="container" *ngIf="siteConfigService.siteConfig as config">
+  <div id="about" class="divider-new pt-5">
+    <h2 class="h2-responsive">Sobre</h2>
+  </div>
 
-    <!--Section: Featured Speakers-->
-    <section class="section team-section" *ngIf="(speakers$ | async)?.length > 0 && speakers$ | async as speakers">
-      <div class="row text-center">
-        <div *ngFor="let speaker of speakers" class="col-lg-3 col-md-6 mb-r"
-          style="padding-left: 40px; padding-right: 40px; margin: 0 auto;">
-          <div class="avatar" title="{{ speaker.name }}" alt="{{ speaker.name }}">
-            <img *ngIf="!speaker.photoURL" class="rounded-circle z-depth-1"
-              style="background-image: url('../../../assets/img/user-default.png')">
-            <img *ngIf="speaker.photoURL" class="rounded-circle z-depth-1"
-              [ngStyle]="{'background-image': 'url(' + speaker.photoURL + ')'}">
+  <!--Section: About-->
+  <section class="text-center" *ngIf="!config?.eventType || config?.eventType === 'DevFest'">
+    <p>
+      <strong>GDG DevFests</strong> are large, community-run developer events happening around the globe focused on
+      community
+      building and learning about Google’s technologies. Each DevFest is carefully crafted for you by your local GDG
+      community
+      to bring in awesome speakers, great topics, and lots fun! While no two events will be exactly alike, each GDG
+      DevFest will,
+      at its core, be powered by a shared belief that when developers come together to exchange ideas,
+      amazing&nbsp;things&nbsp;can&nbsp;happen!
+    </p>
+    <p>
+      <strong>{{ config?.eventName }}</strong> is a 100% community organized full-day developer conference featuring
+      awesome
+      world-class speakers from technology leaders within the community as well as Google product
+      team&nbsp;developers.
+    </p>
+  </section>
+  <section class="text-center" *ngIf="config?.eventType === 'IWD'">
+    <p>
+      <strong>International Women's Day</strong> (IWD) is marked on March 8th every year. In different regions around
+      the globe,
+      the focus of celebrations ranges from general respect and appreciation for women to a celebration of women's
+      economic,
+      political, and social achievements. Each IWD will be tailored to local communities of women in technology.
+      Summits and meetups
+      around the world may feature hands-on coding workshops, inspiring speakers, and networking opportunities.
+    </p>
+    <p>
+      <strong>{{ config?.eventName }}</strong> is a 100% community organized event that aims to provide visibility,
+      community, and resources
+      for women in technology. Our event is designed to promote an environment of inclusivity for women in tech, as
+      well as celebrate
+      women innovators and leaders in the industry.
+    </p>
+  </section>
+  <section class="text-center" *ngIf="config?.eventType === 'Other'">
+    <p [innerHTML]="config?.eventDescription"></p>
+  </section>
+  <section class="text-center"
+    *ngIf="config?.eventGoogle || config?.eventFacebook || config?.eventTwitter || config?.eventInstagram">
+    <!--Social buttons-->
+    <div class="social-section mb-3">
+      <h5 class="title mt-3 mb-4">Nos siga nas redes sociais</h5>
+      <ul>
+        <li *ngIf="config?.eventGoogle"><a class="btn-social-all"
+            href="https://plus.google.com/{{ config?.eventGoogle }}" title="Google+" target="_blank" rel="noopener"><i
+              class="fa fa-google-plus"></i></a></li>
+        <li *ngIf="config?.eventFacebook"><a class="btn-social-all"
+            href="https://www.facebook.com/{{ config?.eventFacebook }}" title="Facebook" target="_blank"
+            rel="noopener"><i class="fa fa-facebook"></i></a></li>
+        <li *ngIf="config?.eventTwitter"><a class="btn-social-all"
+            href="https://twitter.com/{{ config?.eventTwitter }}" title="Twitter" target="_blank" rel="noopener"><i
+              class="fa fa-twitter"></i></a></li>
+        <li *ngIf="config?.eventInstagram"><a class="btn-social-all"
+            href="https://www.instagram.com/{{ config?.eventInstagram }}" title="Instagram" target="_blank"
+            rel="noopener"><i class="fa fa-instagram"></i></a></li>
+      </ul>
+    </div>
+    <!--/.Social buttons-->
+  </section>
+  <!--Section: About-->
+
+  <div class="divider-new pt-5" *ngIf="(speakers$ | async)?.length > 0">
+    <h2 class="h2-responsive">Palestrantes</h2>
+  </div>
+
+  <!--Section: Featured Speakers-->
+  <section class="section team-section" *ngIf="(speakers$ | async)?.length > 0 && speakers$ | async as speakers">
+    <div class="row text-center">
+      <div *ngFor="let speaker of speakers" class="col-lg-3 col-md-6 mb-r"
+        style="padding-left: 40px; padding-right: 40px; margin: 0 auto;">
+        <div class="avatar" title="{{ speaker.name }}" alt="{{ speaker.name }}">
+          <img *ngIf="!speaker.photoURL" class="rounded-circle z-depth-1"
+            style="background-image: url('../../../assets/img/user-default.png')">
+          <img *ngIf="speaker.photoURL" class="rounded-circle z-depth-1"
+            [ngStyle]="{'background-image': 'url(' + speaker.photoURL + ')'}">
+        </div>
+        <h4><span [innerHTML]="speaker.name"></span></h4>
+        <h6><span [innerHTML]="speaker.title"></span><br /><strong *ngIf="speaker.company">@&nbsp;<span
+              [innerHTML]="speaker.company"></span></strong></h6>
+      </div>
+    </div>
+  </section>
+  <!--Section: Featured Speakers-->
+
+  <div class="divider-new pt-5">
+    <h2 class="h2-responsive">Código de Conduta</h2>
+  </div>
+
+  <!--Section: CoC-->
+  <section id="coc" class="text-center">
+    <h5>Seja legal, respeite e colabore com as pessoas.</h5>
+    <p>{{ config?.eventName }} é um evento dedicado a prover um ambiente livre de assédios para todes.</p>
+    <p>
+      Antes de participar, reveja o <a href="http://gdg.rocks/codigodeconduta" target="_blank" rel="noopener">Código
+        de conduta do {{ config?.eventName }}</a>.
+      <br />Este Código de Conduta se aplica a todes que irão participar, palestrar, organizar fornecer ou se envolver
+      de qualquer forma ao {{ config?.eventName }}.
+      <br />Por favor <a href="mailto:{{ config?.eventEmail }}?subject=Code of Conduct - {{ config?.eventName }}"
+        target="_blank" rel="noopener">entre em contato conosco</a> se tiver alguma dúvida.
+    </p>
+  </section>
+  <!--Section: CoC-->
+
+  <div class="divider-new pt-5" *ngIf="(tickets$ | async)?.length > 0">
+    <h2 class="h2-responsive">Pricing</h2>
+  </div>
+
+  <!--Section: Pricing-->
+  <section class="section" *ngIf="(tickets$ | async)?.length > 0 && tickets$ | async as tickets">
+    <div class="row pt-3">
+      <div class="mb-r" *ngFor="let ticket of tickets; let i = index;"
+        [ngClass]="tickets.length > 3 ? 'col-lg-3' : 'col-lg-4'" style="padding: 20px 40px; margin: 0 auto;">
+        <div class="card" *ngIf="ticket.active">
+          <div class="card-header white-text text-center" [ngClass]="styles[i]">
+            <h1 class="dollar">{{ ticket.price }}</h1>
+            <h6>{{ ticket.name }}</h6>
           </div>
-          <h4><span [innerHTML]="speaker.name"></span></h4>
-          <h6><span [innerHTML]="speaker.title"></span><br /><strong *ngIf="speaker.company">@&nbsp;<span
-                [innerHTML]="speaker.company"></span></strong></h6>
-        </div>
-      </div>
-    </section>
-    <!--Section: Featured Speakers-->
-
-    <div class="divider-new pt-5">
-      <h2 class="h2-responsive">Código de Conduta</h2>
-    </div>
-
-    <!--Section: CoC-->
-    <section id="coc" class="text-center">
-      <h5>Seja legal, respeite e colabore com as pessoas.</h5>
-      <p>{{ config?.eventName }} é um evento dedicado a prover um ambiente livre de assédios para todes.</p>
-      <p>
-        Antes de participar, reveja o <a href="http://gdg.rocks/codigodeconduta" target="_blank" rel="noopener">Código
-          de conduta do {{ config?.eventName }}</a>.
-        <br />Este Código de Conduta se aplica a todes que irão participar, palestrar, organizar fornecer ou se envolver
-        de qualquer forma ao {{ config?.eventName }}.
-        <br />Por favor <a href="mailto:{{ config?.eventEmail }}?subject=Code of Conduct - {{ config?.eventName }}"
-          target="_blank" rel="noopener">entre em contato conosco</a> se tiver alguma dúvida.
-      </p>
-    </section>
-    <!--Section: CoC-->
-
-    <div class="divider-new pt-5" *ngIf="(tickets$ | async)?.length > 0">
-      <h2 class="h2-responsive">Pricing</h2>
-    </div>
-
-    <!--Section: Pricing-->
-    <section class="section" *ngIf="(tickets$ | async)?.length > 0 && tickets$ | async as tickets">
-      <div class="row pt-3">
-        <div class="mb-r" *ngFor="let ticket of tickets; let i = index;"
-          [ngClass]="tickets.length > 3 ? 'col-lg-3' : 'col-lg-4'" style="padding: 20px 40px; margin: 0 auto;">
-          <div class="card" *ngIf="ticket.active">
-            <div class="card-header white-text text-center" [ngClass]="styles[i]">
-              <h1 class="dollar">{{ ticket.price }}</h1>
-              <h6>{{ ticket.name }}</h6>
-            </div>
-            <div class="card-body">
-              <div class="card-text text-center">
-                <span *ngIf="ticket.description1">
-                  <i class="fa fa-check"></i>&nbsp;<span [innerHTML]="ticket.description1"></span>
-                  <hr style="width: 60%;" />
-                </span>
-                <span *ngIf="ticket.description2">
-                  <i class="fa fa-check"></i>&nbsp;<span [innerHTML]="ticket.description2"></span>
-                  <hr style="width: 60%;" />
-                </span>
-                <span *ngIf="ticket.description3">
-                  <i class="fa fa-check"></i>&nbsp;<span [innerHTML]="ticket.description3"></span>
-                  <hr style="width: 60%;" />
-                </span>
-                <span *ngIf="ticket.description4">
-                  <i class="fa fa-check"></i>&nbsp;<span [innerHTML]="ticket.description4"></span>
-                </span>
-                <span *ngIf="!ticket.description1">
-                  &nbsp;
-                  <hr style="width: 60%;" />
-                </span>
-                <span *ngIf="!ticket.description2">
-                  &nbsp;
-                  <hr style="width: 60%;" />
-                </span>
-                <span *ngIf="!ticket.description3">
-                  &nbsp;
-                  <hr style="width: 60%;" />
-                </span>
-                <span *ngIf="!ticket.description4">
-                  &nbsp;
-                </span>
-                <div class="text-center ticket-button">
-                  <a target="_blank" rel="noopener" [href]="config?.ticketURL" class="btn btn-primary waves-light"
-                    rel="nofollow">Buy Ticket</a>
-                </div>
+          <div class="card-body">
+            <div class="card-text text-center">
+              <span *ngIf="ticket.description1">
+                <i class="fa fa-check"></i>&nbsp;<span [innerHTML]="ticket.description1"></span>
+                <hr style="width: 60%;" />
+              </span>
+              <span *ngIf="ticket.description2">
+                <i class="fa fa-check"></i>&nbsp;<span [innerHTML]="ticket.description2"></span>
+                <hr style="width: 60%;" />
+              </span>
+              <span *ngIf="ticket.description3">
+                <i class="fa fa-check"></i>&nbsp;<span [innerHTML]="ticket.description3"></span>
+                <hr style="width: 60%;" />
+              </span>
+              <span *ngIf="ticket.description4">
+                <i class="fa fa-check"></i>&nbsp;<span [innerHTML]="ticket.description4"></span>
+              </span>
+              <span *ngIf="!ticket.description1">
+                &nbsp;
+                <hr style="width: 60%;" />
+              </span>
+              <span *ngIf="!ticket.description2">
+                &nbsp;
+                <hr style="width: 60%;" />
+              </span>
+              <span *ngIf="!ticket.description3">
+                &nbsp;
+                <hr style="width: 60%;" />
+              </span>
+              <span *ngIf="!ticket.description4">
+                &nbsp;
+              </span>
+              <div class="text-center ticket-button">
+                <a target="_blank" rel="noopener" [href]="config?.ticketURL" class="btn btn-primary waves-light"
+                  rel="nofollow">Buy Ticket</a>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-    </section>
-    <!--/Section: Pricing-->
-
-    <div class="divider-new pt-5" *ngIf="(sponsors$ | async)?.length > 0">
-      <h2 class="h2-responsive">Patrocínio</h2>
     </div>
 
-    <!--Section: Sponsors-->
-    <section class="section" *ngIf="(sponsors$ | async)?.length > 0 && sponsors$ | async as sponsors">
-      <div class="col sponsors" *ngFor="let level of levels$ | async">
-        <h3 style="font-weight: bold;">
-          {{ level.name }}
-        </h3>
-        <hr style="width: 60%;" />
-        <br />
-        <div class="row">
-          <ng-container *ngFor="let sponsor of sponsors">
-            <ng-container *ngIf="level.$key === sponsor.level">
-              <span class="col-md-6" style="padding: 20px 40px; margin: 0 auto;">
-                <a [href]="sponsor.websiteLink" target="_blank" rel="noopener">
-                  <img [src]="sponsor.logoURL" class="sponsor-img" title="{{ sponsor.name }}"
-                    alt="{{ sponsor.name }}" />
-                </a>
-              </span>
-            </ng-container>
-          </ng-container>
-        </div>
-      </div>
-    </section>
-    <!--Section: Sponsors-->
+  </section>
+  <!--/Section: Pricing-->
+
+  <div class="divider-new pt-5" *ngIf="(sponsors$ | async)?.length > 0">
+    <h2 class="h2-responsive">Patrocínio</h2>
   </div>
+
+  <!--Section: Sponsors-->
+  <section class="section" *ngIf="(sponsors$ | async)?.length > 0 && sponsors$ | async as sponsors">
+    <div class="col sponsors" *ngFor="let level of levels$ | async">
+      <h3 style="font-weight: bold;">
+        {{ level.name }}
+      </h3>
+      <hr style="width: 60%;" />
+      <br />
+      <div class="row">
+        <ng-container *ngFor="let sponsor of sponsors">
+          <ng-container *ngIf="level.$key === sponsor.level">
+            <span class="col-md-6" style="padding: 20px 40px; margin: 0 auto;">
+              <a [href]="sponsor.websiteLink" target="_blank" rel="noopener">
+                <img [src]="sponsor.logoURL" class="sponsor-img" title="{{ sponsor.name }}"
+                  alt="{{ sponsor.name }}" />
+              </a>
+            </span>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </section>
+  <!--Section: Sponsors-->
 </div>

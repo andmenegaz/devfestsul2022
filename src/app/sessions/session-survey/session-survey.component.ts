@@ -1,5 +1,3 @@
-import { AngularFireObject } from '@angular/fire/database';
-import { SiteConfig } from './../../admin/shared/site-config/site-config';
 import { SiteConfigService } from './../../admin/shared/site-config/site-config.service';
 import { Title } from '@angular/platform-browser';
 import { SpeakerService } from './../../speakers/shared/speaker.service';
@@ -20,7 +18,6 @@ import { Observable } from 'rxjs';
 export class SessionSurveyComponent implements OnInit {
   session: Session = new Session();
   speaker: Speaker;
-  siteConfig: Observable<SiteConfig>;
   eventName: string;
   survey: Survey = new Survey();
 
@@ -35,11 +32,7 @@ export class SessionSurveyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.siteConfig = this.siteConfigService.getConfig();
-
-    this.siteConfig.subscribe(snap => {
-      this.eventName = snap.eventName;
-    });
+    this.eventName = this.siteConfigService.siteConfig.eventName;
 
     this.activatedRouter.params.subscribe((params) => {
       const id = params['id'];

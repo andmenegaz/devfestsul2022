@@ -1,5 +1,4 @@
 import { ScheduleService } from './../shared/schedule.service';
-import { SiteConfig } from './../../admin/shared/site-config/site-config';
 import { SiteConfigService } from './../../admin/shared/site-config/site-config.service';
 import { Title } from '@angular/platform-browser';
 import { SpeakerService } from './../../speakers/shared/speaker.service';
@@ -19,7 +18,6 @@ import { AngularFireList } from '@angular/fire/database';
 export class SessionDetailComponent implements OnInit {
   session: Session = new Session();
   profiles: any[];
-  siteConfig: Observable<SiteConfig>;
   eventName: string;
   mySchedule: Observable<any>;
 
@@ -35,11 +33,7 @@ export class SessionDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.siteConfig = this.siteConfigService.getConfig();
-
-    this.siteConfig.subscribe(snap => {
-      this.eventName = snap.eventName;
-    });
+    this.eventName = this.siteConfigService.siteConfig.eventName;
 
     this.activatedRouter.params.subscribe((params) => {
       const id = params['id'];

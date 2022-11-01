@@ -11,13 +11,14 @@ import { Observable } from 'rxjs';
 export class SiteConfigService {
   private basePath: string = firebaseConfig.devfestYear + '/siteConfig';
   private firebaseStorage: any;
+  public siteConfig: SiteConfig = null;
 
   constructor(private db: AngularFireDatabase, private authService: AuthService) {
     this.firebaseStorage = firebase.storage();
   }
 
-  getConfig(): Observable<SiteConfig> {
-    return this.db.object<SiteConfig>(this.basePath).valueChanges();
+  getConfig() {
+    this.db.object<SiteConfig>(this.basePath).valueChanges().subscribe(config => this.siteConfig = config);
   }
 
   createConfig(siteConfig: SiteConfig, file?: File): void {

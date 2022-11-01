@@ -7,7 +7,6 @@ import { Speaker } from './../speakers/shared/speaker';
 import { Sponsor } from './../sponsors/shared/sponsor';
 import { Level } from './../sponsors/shared/level';
 import { Ticket } from './../admin/shared/ticket/ticket';
-import { SiteConfig } from './../admin/shared/site-config/site-config';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -18,7 +17,6 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   speakers$: Observable<Speaker[]>;
-  siteConfig$: Observable<SiteConfig>;
   sponsors$: Observable<Sponsor[]>;
   levels$: Observable<Level[]>;
   tickets$: Observable<Ticket[]>;
@@ -38,7 +36,6 @@ export class HomeComponent implements OnInit {
     // Default colors for Ticket Types
     this.styles = ['cyan', 'blue', 'indigo', 'deep-purple'];
 
-    this.siteConfig$ = this.siteConfigService.getConfig();
     this.sponsors$ = this.sponsorService.getSponsorList();
     this.levels$ = this.levelService.getLevelList();
     this.tickets$ = this.ticketService.getTicketList();

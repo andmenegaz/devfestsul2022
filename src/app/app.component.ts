@@ -1,5 +1,4 @@
 import { SiteConfigService } from './admin/shared/site-config/site-config.service';
-import { SiteConfig } from './admin/shared/site-config/site-config';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -14,7 +13,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  siteConfig: Observable<SiteConfig>;
   eventName: string;
 
   constructor(
@@ -25,11 +23,8 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.siteConfig = this.siteConfigService.getConfig();
-
-    this.siteConfig.subscribe(snap => {
-      this.eventName = snap.eventName;
-    });
+    this.siteConfigService.getConfig();
+    this.eventName = this.siteConfigService.siteConfig.eventName;
 
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
