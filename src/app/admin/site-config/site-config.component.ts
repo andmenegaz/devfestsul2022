@@ -1,4 +1,3 @@
-import { firebaseConfig } from './../../../environments/firebase.config';
 import { Router } from '@angular/router';
 import { SiteConfigService } from './../shared/site-config/site-config.service';
 import { SiteConfig } from './../shared/site-config/site-config';
@@ -19,7 +18,7 @@ export class SiteConfigComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.siteConfigService.getConfig().valueChanges().subscribe(config => {
+    this.siteConfigService.getConfig().subscribe(config => {
       this.siteConfig = config;
       if (config.groupName) {
         this.addConfig = false;

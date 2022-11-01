@@ -6,7 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SessionService } from '../shared/session.service';
 import { Component, OnInit } from '@angular/core';
 import { Section } from './../shared/section';
-import { AngularFireList} from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-session-edit',
@@ -14,8 +14,8 @@ import { AngularFireList} from '@angular/fire/database';
   styleUrls: ['./session-edit.component.scss']
 })
 export class SessionEditComponent implements OnInit {
-  public sections: AngularFireList<Section>;
-  public speakers: AngularFireList<Speaker>;
+  public sections: Observable<Section[]>;
+  public speakers: Observable<Speaker[]>;
   session: Session = new Session();
   activeKey: string;
 
@@ -30,7 +30,7 @@ export class SessionEditComponent implements OnInit {
   ngOnInit() {
     this.activatedRouter.params.subscribe((params) => {
       this.activeKey = params['id'];
-      this.sessionService.getSession(this.activeKey).valueChanges().subscribe(session => {
+      this.sessionService.getSession(this.activeKey).subscribe(session => {
         this.session = session;
       });
     });

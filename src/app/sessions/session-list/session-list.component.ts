@@ -5,9 +5,9 @@ import { AuthService } from './../../services/auth/auth.service';
 import { SessionService } from './../shared/session.service';
 import { Session } from './../shared/session';
 import { Section } from './../shared/section';
-import { AngularFireList} from '@angular/fire/database';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-session-list',
@@ -16,8 +16,8 @@ import { ModalDirective } from 'angular-bootstrap-md';
   providers: [ModalDirective]
 })
 export class SessionListComponent implements OnInit {
-  public sessions: AngularFireList<Session>;
-  public sections: AngularFireList<Section>;
+  public sessions: Observable<Session[]>;
+  public sections: Observable<Section[]>;
   section: Section = new Section();
 
   @ViewChild('sectionModal') public sectionModal: ModalDirective;

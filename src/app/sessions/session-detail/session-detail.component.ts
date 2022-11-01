@@ -1,5 +1,4 @@
 import { ScheduleService } from './../shared/schedule.service';
-import { AngularFireObject } from '@angular/fire/database';
 import { SiteConfig } from './../../admin/shared/site-config/site-config';
 import { SiteConfigService } from './../../admin/shared/site-config/site-config.service';
 import { Title } from '@angular/platform-browser';
@@ -9,6 +8,8 @@ import { AuthService } from './../../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Session } from '../../sessions/shared/session';
+import { Observable } from 'rxjs';
+import { AngularFireList } from '@angular/fire/database';
 
 @Component({
   selector: 'app-session-detail',
@@ -18,9 +19,9 @@ import { Session } from '../../sessions/shared/session';
 export class SessionDetailComponent implements OnInit {
   session: Session = new Session();
   profiles: any[];
-  siteConfig: AngularFireObject<SiteConfig>;
+  siteConfig: Observable<SiteConfig>;
   eventName: string;
-  mySchedule: AngularFireObject<any>;
+  mySchedule: Observable<any>;
 
   constructor(
     private router: Router,
@@ -36,13 +37,13 @@ export class SessionDetailComponent implements OnInit {
   ngOnInit() {
     this.siteConfig = this.siteConfigService.getConfig();
 
-    this.siteConfig.valueChanges().subscribe(snap => {
+    this.siteConfig.subscribe(snap => {
       this.eventName = snap.eventName;
     });
 
     this.activatedRouter.params.subscribe((params) => {
       const id = params['id'];
-      this.sessionService.getSession(id).valueChanges().subscribe(session => {
+      this.sessionService.getSession(id).subscribe(session => {
         this.session = session;
         this.getSpeakerDetails(session.speakers);
         // dynamically set page titles
@@ -93,7 +94,7 @@ export class SessionDetailComponent implements OnInit {
   }
 
   addToSchedule() {
-    this.mySchedule.set({
+    this.scheduleService.setSchedule({
       id: this.session.$key,
       title: this.session.title,
       time: this.session.time,
@@ -106,7 +107,7 @@ export class SessionDetailComponent implements OnInit {
   }
 
   removeFromSchedule() {
-    this.mySchedule.remove();
+    this.scheduleService.removeFromSchedule();
   }
 
   openFeedback(session) {

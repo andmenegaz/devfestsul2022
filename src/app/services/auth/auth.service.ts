@@ -40,8 +40,9 @@ export class AuthService {
 
   isAdmin() {
     let isAdmin: boolean;
-    this.afDatabase.object(`/admins/${this.userId}`).valueChanges().subscribe(snapshot => {
-      isAdmin = !!snapshot;
+    const user = this.afDatabase.object<boolean>(`/admins/${this.userId}`).valueChanges();
+    user.subscribe(snapshot => {
+      isAdmin = snapshot;
     });
     return isAdmin;
   }

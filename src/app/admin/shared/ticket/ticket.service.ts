@@ -2,6 +2,7 @@ import { Ticket } from './ticket';
 import { firebaseConfig } from './../../../../environments/firebase.config';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class TicketService {
@@ -11,15 +12,15 @@ export class TicketService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  getTicketList(): AngularFireList<Ticket> {
+  getTicketList(): Observable<Ticket[]> {
     this.tickets = this.db.list(this.basePath, ref => ref);
-    return this.tickets;
+    return this.tickets.valueChanges();
   }
 
-  getTicket(key: string): AngularFireObject<Ticket> {
+  getTicket(key: string): Observable<Ticket> {
     const path = `${this.basePath}/${key}`;
     this.ticket = this.db.object(path);
-    return this.ticket;
+    return this.ticket.valueChanges();
   }
 
   createTicket(ticket: Ticket): void {

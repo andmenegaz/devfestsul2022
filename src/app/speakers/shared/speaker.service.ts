@@ -4,6 +4,7 @@ import { firebaseConfig } from './../../../environments/firebase.config';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class SpeakerService {
@@ -16,21 +17,21 @@ export class SpeakerService {
     this.firebaseStorage = firebase.storage();
   }
 
-  getSpeakerList(): AngularFireList<Speaker> {
+  getSpeakerList(): Observable<Speaker[]> {
     this.speakers = this.db.list(this.basePath, ref => ref.orderByChild('name'));
-    return this.speakers;
+    return this.speakers.valueChanges();
   }
 
-  getSpeaker(key: string): AngularFireObject<Speaker> {
+  getSpeaker(key: string): Observable<Speaker> {
     const path = `${this.basePath}/${key}`;
     this.speaker = this.db.object(path);
-    return this.speaker;
+    return this.speaker.valueChanges();
   }
 
   getSpeakerName(key: string): any {
     const path = `${this.basePath}/${key}/name`;
     let speakerName: string;
-    this.db.object(path).valueChanges().subscribe(snapshot => {
+    this.getSpeaker(key).subscribe(snapshot => {
       speakerName = snapshot.toString();
     });
     return speakerName;

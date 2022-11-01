@@ -1,7 +1,7 @@
 import { TicketService } from './../../shared/ticket/ticket.service';
 import { Ticket } from './../../shared/ticket/ticket';
 import { Component, OnInit } from '@angular/core';
-import { AngularFireList } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-ticket-list',
@@ -9,7 +9,7 @@ import { AngularFireList } from '@angular/fire/database';
   styleUrls: ['./ticket-list.component.scss']
 })
 export class TicketListComponent implements OnInit {
-  tickets: AngularFireList<Ticket>;
+  tickets: Observable<Ticket[]>;
 
   constructor(private ticketService: TicketService) { }
 

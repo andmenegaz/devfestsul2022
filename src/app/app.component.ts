@@ -5,7 +5,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 import { mergeMap, map, filter } from 'rxjs/operators';
-import { AngularFireObject } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { AngularFireObject } from '@angular/fire/database';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  siteConfig: AngularFireObject<SiteConfig>;
+  siteConfig: Observable<SiteConfig>;
   eventName: string;
 
   constructor(
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.siteConfig = this.siteConfigService.getConfig();
 
-    this.siteConfig.valueChanges().subscribe(snap => {
+    this.siteConfig.subscribe(snap => {
       this.eventName = snap.eventName;
     });
 

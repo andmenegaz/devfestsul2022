@@ -4,6 +4,7 @@ import { firebaseConfig } from './../../../environments/firebase.config';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class OrganizerService {
@@ -16,24 +17,15 @@ export class OrganizerService {
     this.firebaseStorage = firebase.storage();
   }
 
-  getOrganizerList(): AngularFireList<Organizer> {
+  getOrganizerList(): Observable<Organizer[]> {
     this.organizers = this.db.list(this.basePath, ref => ref.orderByChild('name'));
-    return this.organizers;
+    return this.organizers.valueChanges();
   }
 
-  getOrganizer(key: string): AngularFireObject<Organizer> {
+  getOrganizer(key: string): Observable<Organizer> {
     const path = `${this.basePath}/${key}`;
     this.speaker = this.db.object(path);
-    return this.speaker;
-  }
-
-  getOrganizerName(key: string): any {
-    const path = `${this.basePath}/${key}/name`;
-    let speakerName: string;
-    this.db.object(path).valueChanges().subscribe(snapshot => {
-      speakerName = snapshot.toString();
-    });
-    return speakerName;
+    return this.speaker.valueChanges();
   }
 
   createOrganizer(speaker: Organizer, file?: File): void {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -8,20 +9,21 @@ export class UserService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  getUserList(): AngularFireList<any> {
+  getUserList(): Observable<any[]> {
     this.users = this.db.list(this.basePath);
-    return this.users;
+    return this.users.valueChanges();
   }
 
-  getUserQuery(offset, startKey?): AngularFireList<any[]> {
+  getUserQuery(offset, startKey?): Observable<any[]> {
     this.users = this.db.list(this.basePath, ref => ref.orderByKey().startAt(startKey).limitToFirst(offset +1));
-    return this.users;
+    return this.users.valueChanges();
   }
 
   isAdmin(key: string) {
     let isAdmin: boolean;
-    this.db.object(`/admins/${key}`).valueChanges().subscribe(snapshot => {
-      isAdmin = !!snapshot;
+    const user = this.db.object<boolean>(`/admins/${key}`).valueChanges()
+    user.subscribe(snapshot => {
+      isAdmin = snapshot;
     });
     return isAdmin;
   }

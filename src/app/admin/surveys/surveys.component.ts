@@ -3,7 +3,7 @@ import { Session } from './../../sessions/shared/session';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { DatePipe } from '@angular/common';
-import { AngularFireList } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-surveys',
@@ -12,7 +12,7 @@ import { AngularFireList } from '@angular/fire/database';
   providers: [ModalDirective, DatePipe]
 })
 export class SurveysComponent implements OnInit {
-  public sessions: AngularFireList<Session>;
+  public sessions: Observable<Session[]>;
   public surveyDetail: any;
   surveyData: any[] = [];
 

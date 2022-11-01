@@ -1,9 +1,9 @@
 import { SiteConfigService } from './../admin/shared/site-config/site-config.service';
-import { AngularFireObject } from '@angular/fire/database';
 import { SiteConfig } from './../admin/shared/site-config/site-config';
 import { AuthService } from './../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-top-menu',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./top-menu.component.scss']
 })
 export class TopMenuComponent implements OnInit {
-  siteConfig: AngularFireObject<SiteConfig>;
+  siteConfig: Observable<SiteConfig>;
 
   constructor(
     private authService: AuthService,

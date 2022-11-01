@@ -2,7 +2,6 @@ import { TicketService } from './../admin/shared/ticket/ticket.service';
 import { LevelService } from './../sponsors/shared/level.service';
 import { SponsorService } from './../sponsors/shared/sponsor.service';
 import { SiteConfigService } from './../admin/shared/site-config/site-config.service';
-import { AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { SpeakerService } from './../speakers/shared/speaker.service';
 import { Speaker } from './../speakers/shared/speaker';
 import { Sponsor } from './../sponsors/shared/sponsor';
@@ -10,6 +9,7 @@ import { Level } from './../sponsors/shared/level';
 import { Ticket } from './../admin/shared/ticket/ticket';
 import { SiteConfig } from './../admin/shared/site-config/site-config';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,11 +17,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  speakers$: AngularFireList<Speaker>;
-  siteConfig$: AngularFireObject<SiteConfig>;
-  sponsors$: AngularFireList<Sponsor>;
-  levels$: AngularFireList<Level>;
-  tickets$: AngularFireList<Ticket>;
+  speakers$: Observable<Speaker[]>;
+  siteConfig$: Observable<SiteConfig>;
+  sponsors$: Observable<Sponsor[]>;
+  levels$: Observable<Level[]>;
+  tickets$: Observable<Ticket[]>;
   styles: any[];
 
   constructor(

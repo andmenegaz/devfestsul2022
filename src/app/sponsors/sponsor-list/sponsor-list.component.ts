@@ -4,11 +4,11 @@ import { LevelService } from './../shared/level.service';
 import { SponsorService } from './../shared/sponsor.service';
 import { Sponsor } from './../shared/sponsor';
 import { Level } from './../shared/level';
-import { AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth/auth.service';
 import { SiteConfig } from './../../admin/shared/site-config/site-config';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sponsor-list',
@@ -17,10 +17,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   providers: [ModalDirective]
 })
 export class SponsorListComponent implements OnInit {
-  public sponsors: AngularFireList<Sponsor>;
-  public levels: AngularFireList<Level>;
+  public sponsors: Observable<Sponsor[]>;
+  public levels: Observable<Level[]>;
   level: Level = new Level();
-  siteConfig$: AngularFireObject<SiteConfig>;
+  siteConfig$: Observable<SiteConfig>;
 
   @ViewChild('levelModal') public levelModal: ModalDirective;
 

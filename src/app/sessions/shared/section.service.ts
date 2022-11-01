@@ -2,6 +2,7 @@ import { Section } from './section';
 import { Injectable } from '@angular/core';
 import { firebaseConfig } from './../../../environments/firebase.config';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class SectionService {
@@ -9,23 +10,18 @@ export class SectionService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  getSectionList(query?: object, year?: string|number): AngularFireList<Section> {
-    this.listPath().valueChanges().subscribe(resp => this.sections = <AngularFireList<Section>><unknown>resp);
-    return this.sections;
+  getSectionList(): Observable<Section[]> {
+    this.sections = this.db.list<Section>(`${firebaseConfig.devfestYear}/sections`, ref => ref);
+    return this.sections.valueChanges();
   }
 
   createSection(section: Section): void {
-    const list = this.listPath();
+    const list = this.sections;
     list.push(section);
   }
 
   deleteSection(key: string): void {
-    const list = this.listPath();
+    const list = this.sections;
     list.remove(key);
   }
-
-  private listPath() {
-    return this.db.list(`${firebaseConfig.devfestYear}/sections`, ref => ref);
-  }
-
 }

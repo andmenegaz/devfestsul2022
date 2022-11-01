@@ -2,9 +2,9 @@ import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth/auth.service';
 import { OrganizerService } from './../shared/organizer.service';
 import { Organizer } from './../shared/organizer';
-import { AngularFireList} from '@angular/fire/database';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-organizer-list',
@@ -14,7 +14,7 @@ import { ModalDirective } from 'angular-bootstrap-md';
 export class OrganizerListComponent implements OnInit {
   @ViewChild('organizerModal') public organizerModal: ModalDirective;
 
-  public organizers: AngularFireList<Organizer>;
+  public organizers: Observable<Organizer[]>;
   public organizerDetail: any;
 
   constructor(

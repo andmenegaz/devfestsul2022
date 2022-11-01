@@ -1,7 +1,7 @@
 import { SiteConfigService } from './../admin/shared/site-config/site-config.service';
-import { AngularFireObject } from '@angular/fire/database';
 import { SiteConfig } from './../admin/shared/site-config/site-config';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-footer',
@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  siteConfig: AngularFireObject<SiteConfig>;
+  siteConfig: Observable<SiteConfig>;
   copyright = new Date().getFullYear();
 
   constructor(private siteConfigService: SiteConfigService) { }
