@@ -3,7 +3,7 @@ import { SiteConfig } from './site-config';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { firebaseConfig } from './../../../../environments/firebase.config';
 import { Injectable } from '@angular/core';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/storage';
 
 @Injectable()

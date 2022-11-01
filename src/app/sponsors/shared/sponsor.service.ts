@@ -1,7 +1,7 @@
 import { Sponsor } from './sponsor';
 import { firebaseConfig } from './../../../environments/firebase.config';
 import { Injectable } from '@angular/core';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/storage';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 

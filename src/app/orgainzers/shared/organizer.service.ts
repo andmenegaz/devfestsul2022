@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Organizer } from './organizer';
 import { firebaseConfig } from './../../../environments/firebase.config';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/storage';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 
