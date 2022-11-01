@@ -38,14 +38,6 @@ export class SponsorListComponent implements OnInit {
     this.siteConfig$ = this.siteConfigService.getConfig();
   }
 
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
-
-  isAdmin() {
-    return this.authService.isAdmin();
-  }
-
   addLevel() {
     this.level.name = this.level.name.replace(/^\s+|\s+$/g, '');
     this.levelService.createLevel(this.level);

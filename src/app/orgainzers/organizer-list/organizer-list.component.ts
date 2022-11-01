@@ -27,14 +27,6 @@ export class OrganizerListComponent implements OnInit {
     this.organizers = this.organizerService.getOrganizerList();
   }
 
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
-
-  isAdmin() {
-    return this.authService.isAdmin();
-  }
-
   deleteOrganizer(organizer) {
     if (window.confirm('Are you sure you want to delete this organizer?')) {
       this.organizerService.deleteOrganizer(organizer.$key);

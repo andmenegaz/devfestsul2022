@@ -4,7 +4,7 @@
 <div class="container">
   <!--Section: organizers-->
   <section class="section team-section pb-3">
-    <div class="text-center" *ngIf="isLoggedIn() && isAdmin()">
+    <div class="text-center" *ngIf="authService.isLoggedIn && authService.isAdmin">
       <button type="button" class="btn btn-success" routerLink="/organizers/new">Create Organizer</button>
     </div>
     <div class="row text-center" *ngIf="(organizers | async)?.length !== 0 && organizers | async as organizers">
@@ -13,10 +13,10 @@
           <img *ngIf="!organizer.photoURL" class="rounded-circle z-depth-1" style="background-image: url('../../../assets/img/user-default.png')">
           <img *ngIf="organizer.photoURL" class="rounded-circle z-depth-1" [ngStyle]="{'background-image': 'url(' + organizer.photoURL + ')'}">
         </div>
-        <button type="button" class="btn btn-sm btn-primary" *ngIf="isLoggedIn() && isAdmin()" routerLink="/organizers/{{ organizer.$key }}/edit">
+        <button type="button" class="btn btn-sm btn-primary" *ngIf="authService.isLoggedIn && authService.isAdmin" routerLink="/organizers/{{ organizer.$key }}/edit">
           <i class="fa fa-pencil" aria-hidden="true"></i>
         </button>
-        <button type="button" class="btn btn-sm btn-danger" *ngIf="isLoggedIn() && isAdmin()" (click)="deleteorganizer(organizer)">
+        <button type="button" class="btn btn-sm btn-danger" *ngIf="authService.isLoggedIn && authService.isAdmin" (click)="deleteorganizer(organizer)">
           <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
         <h4 class="show-modal" (click)="showModal(organizer)" [innerHTML]="organizer.name"></h4>

@@ -27,14 +27,6 @@ export class SpeakerListComponent implements OnInit {
     this.speakers = this.speakerService.getSpeakerList();
   }
 
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
-
-  isAdmin() {
-    return this.authService.isAdmin();
-  }
-
   deleteSpeaker(speaker) {
     if (window.confirm('Are you sure you want to delete this speaker?')) {
       this.speakerService.deleteSpeaker(speaker.$key);

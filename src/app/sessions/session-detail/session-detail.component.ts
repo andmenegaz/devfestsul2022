@@ -74,14 +74,6 @@ export class SessionDetailComponent implements OnInit {
     this.authService.userLogin().then(() => window.location.reload());
   }
 
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
-
-  isAdmin() {
-    return this.authService.isAdmin();
-  }
-
   editDetails(session) {
     this.router.navigate([`/sessions/${session.$key}/edit`]);
   }
@@ -111,7 +103,7 @@ export class SessionDetailComponent implements OnInit {
   }
 
   openFeedback(session) {
-    if ((this.isLoggedIn())) {
+    if ((this.authService.isLoggedIn)) {
       this.router.navigate([`/sessions/${session.$key}/survey`]);
     }
   }

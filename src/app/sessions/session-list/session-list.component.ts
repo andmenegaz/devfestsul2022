@@ -35,16 +35,8 @@ export class SessionListComponent implements OnInit {
     this.sections = this.sectionService.getSectionList();
   }
 
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
-
-  isAdmin() {
-    return this.authService.isAdmin();
-  }
-
   openDetails(session) {
-    if ((this.isLoggedIn() && this.isAdmin()) || session.abstract) {
+    if ((this.authService.isLoggedIn && this.authService.isAdmin) || session.abstract) {
       this.router.navigate([`/sessions/${session.$key}`]);
     }
   }

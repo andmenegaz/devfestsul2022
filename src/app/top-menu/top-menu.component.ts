@@ -27,14 +27,6 @@ export class TopMenuComponent implements OnInit {
     this.authService.userLogin().then(() => this.router.navigate(['/home']), alert);
   }
 
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
-
-  isAdmin() {
-    return this.authService.isAdmin();
-  }
-
   userLogout() {
     this.authService.userLogout().then(() => this.router.navigate(['/home']), alert);
   }

@@ -8,6 +8,8 @@ export class AuthService {
   public userId: string = null;
   public displayName: string = null;
   public email: string = null;
+  public isAdmin: boolean = false;
+  public isLoggedIn: boolean = false;
 
   constructor(public afAuth: AngularFireAuth, public afDatabase: AngularFireDatabase) {
     afAuth.authState.subscribe(user => {
@@ -15,6 +17,8 @@ export class AuthService {
         this.userId = user.uid;
         this.displayName = user.displayName;
         this.email = user.email;
+        this.isLoggedIn = !!(this.userId !== null);
+        this.setAdmin();
       }
     });
   }
@@ -27,24 +31,19 @@ export class AuthService {
     return this.afDatabase.object(`/userProfile/${this.userId}/`);
   }
 
-  isLoggedIn() {
-    return !!(this.userId !== null);
-  }
-
   userLogout(): Promise<void> {
     this.userId = null;
     this.displayName = null;
     this.email = null;
+    this.isAdmin = false;
+    this.isLoggedIn = false;
     return this.afAuth.signOut();
   }
 
-  isAdmin() {
-    let isAdmin: boolean;
+  setAdmin() {
     const user = this.afDatabase.object<boolean>(`/admins/${this.userId}`).valueChanges();
     user.subscribe(snapshot => {
-      isAdmin = snapshot;
+      this.isAdmin = snapshot;
     });
-    return isAdmin;
   }
-
 }
