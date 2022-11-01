@@ -15,6 +15,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/core": "^9.1.13",
     "@nicky-lenaers/ngx-scroll-to": "^9.0.0",
     "angular-bootstrap-md": "^8.10.1",
     "bootstrap": "^4.0.0-beta",
