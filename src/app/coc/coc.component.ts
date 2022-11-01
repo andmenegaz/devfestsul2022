@@ -1,7 +1,7 @@
 import { SiteConfigService } from './../admin/shared/site-config/site-config.service';
 import { SiteConfig } from './../admin/shared/site-config/site-config';
-import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import { Component, OnInit } from '@angular/core';
+import { AngularFireObject } from '@angular/fire/database';
 
 @Component({
   selector: 'app-coc',
@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coc.component.scss']
 })
 export class CocComponent implements OnInit {
-  siteConfig: FirebaseObjectObservable<SiteConfig>;
+  siteConfig: AngularFireObject<SiteConfig>;
 
   constructor(
     private siteConfigService: SiteConfigService

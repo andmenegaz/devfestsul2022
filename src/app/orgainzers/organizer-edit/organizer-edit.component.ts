@@ -23,7 +23,7 @@ export class OrganizerEditComponent implements OnInit {
   ngOnInit() {
     this.activatedRouter.params.subscribe((params) => {
       this.activeKey = params['id'];
-      this.organizerService.getOrganizer(this.activeKey).subscribe(organizer => {
+      this.organizerService.getOrganizer(this.activeKey).valueChanges().subscribe(organizer => {
         this.organizer = organizer;
       });
     });

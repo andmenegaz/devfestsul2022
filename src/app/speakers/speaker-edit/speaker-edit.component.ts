@@ -23,7 +23,7 @@ export class SpeakerEditComponent implements OnInit {
   ngOnInit() {
     this.activatedRouter.params.subscribe((params) => {
       this.activeKey = params['id'];
-      this.speakerService.getSpeaker(this.activeKey).subscribe(speaker => {
+      this.speakerService.getSpeaker(this.activeKey).valueChanges().subscribe(speaker => {
         this.speaker = speaker;
       });
     });

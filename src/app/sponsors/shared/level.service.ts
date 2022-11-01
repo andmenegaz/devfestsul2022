@@ -1,19 +1,17 @@
 import { Level } from './level';
-import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { firebaseConfig } from './../../../environments/firebase.config';
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 @Injectable()
 export class LevelService {
   private basePath: string = firebaseConfig.devfestYear + '/levels';
-  levels: FirebaseListObservable<Level[]> = null;
+  levels: AngularFireList<Level> = null;
 
   constructor(private db: AngularFireDatabase) { }
 
-  getLevelList(query?: object): FirebaseListObservable<Level[]> {
-    this.levels = this.db.list(this.basePath, {
-      query: query
-    });
+  getLevelList(): AngularFireList<Level> {
+    this.levels = this.db.list(this.basePath, ref => ref.orderByChild('rank'));
     return this.levels;
   }
 

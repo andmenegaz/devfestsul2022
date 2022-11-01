@@ -1,29 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Speaker } from './speaker';
 import { firebaseConfig } from './../../../environments/firebase.config';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 
 @Injectable()
 export class SpeakerService {
   private basePath: string = firebaseConfig.devfestYear + '/speakers';
-  private speakers: FirebaseListObservable<Speaker[]> = null;
-  private speaker: FirebaseObjectObservable<Speaker> = null;
+  private speakers: AngularFireList<Speaker> = null;
+  private speaker: AngularFireObject<Speaker> = null;
   private firebaseStorage: any;
 
   constructor(private db: AngularFireDatabase) {
     this.firebaseStorage = firebase.storage();
   }
 
-  getSpeakerList(query?: object): FirebaseListObservable<Speaker[]> {
-    this.speakers = this.db.list(this.basePath, {
-      query: query
-    });
+  getSpeakerList(): AngularFireList<Speaker> {
+    this.speakers = this.db.list(this.basePath, ref => ref.orderByChild('name'));
     return this.speakers;
   }
 
-  getSpeaker(key: string): FirebaseObjectObservable<Speaker> {
+  getSpeaker(key: string): AngularFireObject<Speaker> {
     const path = `${this.basePath}/${key}`;
     this.speaker = this.db.object(path);
     return this.speaker;
@@ -32,8 +30,8 @@ export class SpeakerService {
   getSpeakerName(key: string): any {
     const path = `${this.basePath}/${key}/name`;
     let speakerName: string;
-    this.db.object(path).subscribe(snapshot => {
-      speakerName = snapshot.$value;
+    this.db.object(path).valueChanges().subscribe(snapshot => {
+      speakerName = snapshot.toString();
     });
     return speakerName;
   }

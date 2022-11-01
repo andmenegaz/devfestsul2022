@@ -1,10 +1,10 @@
-import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { firebaseConfig } from './../../../environments/firebase.config';
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 @Injectable()
 export class ScheduleService {
-  schedules: FirebaseListObservable<any> = null;
+  schedules: AngularFireList<any> = null;
 
   constructor(private db: AngularFireDatabase) { }
 

@@ -21,7 +21,7 @@ export class TicketEditComponent implements OnInit {
   ngOnInit() {
     this.activatedRouter.params.subscribe((params) => {
       this.activeKey = params['id'];
-      this.ticketService.getTicket(this.activeKey).subscribe(ticket => {
+      this.ticketService.getTicket(this.activeKey).valueChanges().subscribe(ticket => {
         this.ticket = ticket;
       });
     });

@@ -1,29 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Organizer } from './organizer';
 import { firebaseConfig } from './../../../environments/firebase.config';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 
 @Injectable()
 export class OrganizerService {
   private basePath: string = firebaseConfig.devfestYear + '/organizers';
-  private organizers: FirebaseListObservable<Organizer[]> = null;
-  private speaker: FirebaseObjectObservable<Organizer> = null;
+  private organizers: AngularFireList<Organizer> = null;
+  private speaker: AngularFireObject<Organizer> = null;
   private firebaseStorage: any;
 
   constructor(private db: AngularFireDatabase) {
     this.firebaseStorage = firebase.storage();
   }
 
-  getOrganizerList(query?: object): FirebaseListObservable<Organizer[]> {
-    this.organizers = this.db.list(this.basePath, {
-      query: query
-    });
+  getOrganizerList(): AngularFireList<Organizer> {
+    this.organizers = this.db.list(this.basePath, ref => ref.orderByChild('name'));
     return this.organizers;
   }
 
-  getOrganizer(key: string): FirebaseObjectObservable<Organizer> {
+  getOrganizer(key: string): AngularFireObject<Organizer> {
     const path = `${this.basePath}/${key}`;
     this.speaker = this.db.object(path);
     return this.speaker;
@@ -32,8 +30,8 @@ export class OrganizerService {
   getOrganizerName(key: string): any {
     const path = `${this.basePath}/${key}/name`;
     let speakerName: string;
-    this.db.object(path).subscribe(snapshot => {
-      speakerName = snapshot.$value;
+    this.db.object(path).valueChanges().subscribe(snapshot => {
+      speakerName = snapshot.toString();
     });
     return speakerName;
   }

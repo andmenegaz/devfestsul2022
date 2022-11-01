@@ -1,25 +1,23 @@
 import { Survey } from './survey';
 import { Session } from './session';
 import { firebaseConfig } from './../../../environments/firebase.config';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 
 @Injectable()
 export class SessionService {
   private basePath: string = firebaseConfig.devfestYear + '/sessions';
-  sessions: FirebaseListObservable<Session[]> = null;
-  session: FirebaseObjectObservable<Session> = null;
+  sessions: AngularFireList<Session> = null;
+  session: AngularFireObject<Session> = null;
 
   constructor(private db: AngularFireDatabase) { }
 
-  getSessionList(query?: object): FirebaseListObservable<Session[]> {
-    this.sessions = this.db.list(this.basePath, {
-      query: query
-    });
+  getSessionList(): AngularFireList<Session> {
+    this.sessions = this.db.list(this.basePath, ref => ref);
     return this.sessions;
   }
 
-  getSession(key: string): FirebaseObjectObservable<Session> {
+  getSession(key: string): AngularFireObject<Session> {
     const path = `${this.basePath}/${key}`;
     this.session = this.db.object(path);
     return this.session;

@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth/auth.service';
 import { OrganizerService } from './../shared/organizer.service';
 import { Organizer } from './../shared/organizer';
-import { FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { AngularFireList} from '@angular/fire/database';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
 
@@ -14,7 +14,7 @@ import { ModalDirective } from 'angular-bootstrap-md';
 export class OrganizerListComponent implements OnInit {
   @ViewChild('organizerModal') public organizerModal: ModalDirective;
 
-  public organizers: FirebaseListObservable<Organizer[]>;
+  public organizers: AngularFireList<Organizer>;
   public organizerDetail: any;
 
   constructor(
@@ -24,7 +24,7 @@ export class OrganizerListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.organizers = this.organizerService.getOrganizerList({ orderByChild: 'name' });
+    this.organizers = this.organizerService.getOrganizerList();
   }
 
   isLoggedIn() {

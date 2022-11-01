@@ -1,7 +1,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { SponsorService } from './../shared/sponsor.service';
 import { LevelService } from './../shared/level.service';
-import { FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { AngularFireList} from '@angular/fire/database';
 import { Level } from './../shared/level';
 import { Sponsor } from './../shared/sponsor';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SponsorEditComponent implements OnInit {
   sponsor: Sponsor = new Sponsor();
-  public levels: FirebaseListObservable<Level[]>;
+  public levels: AngularFireList<Level>;
   activeKey: string;
 
   constructor(
@@ -26,12 +26,12 @@ export class SponsorEditComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
       this.activeKey = params['id'];
-      this.sponsorService.getSponsor(this.activeKey).subscribe(sponsor => {
+      this.sponsorService.getSponsor(this.activeKey).valueChanges().subscribe(sponsor => {
         this.sponsor = sponsor;
       });
     });
 
-    this.levels = this.levelService.getLevelList({ orderByChild: 'rank' });
+    this.levels = this.levelService.getLevelList();
   }
 
   update() {

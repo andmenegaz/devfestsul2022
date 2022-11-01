@@ -1,4 +1,4 @@
-import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
+import { AngularFireObject } from '@angular/fire/database';
 import { SiteConfig } from './../../admin/shared/site-config/site-config';
 import { SiteConfigService } from './../../admin/shared/site-config/site-config.service';
 import { Title } from '@angular/platform-browser';
@@ -19,7 +19,7 @@ import { Survey } from './../shared/survey';
 export class SessionSurveyComponent implements OnInit {
   session: Session = new Session();
   speaker: Speaker;
-  siteConfig: FirebaseObjectObservable<SiteConfig>;
+  siteConfig: AngularFireObject<SiteConfig>;
   eventName: string;
   survey: Survey = new Survey();
 
@@ -36,13 +36,13 @@ export class SessionSurveyComponent implements OnInit {
   ngOnInit() {
     this.siteConfig = this.siteConfigService.getConfig();
 
-    this.siteConfig.subscribe(snap => {
+    this.siteConfig.valueChanges().subscribe(snap => {
       this.eventName = snap.eventName;
     });
 
     this.activatedRouter.params.subscribe((params) => {
       const id = params['id'];
-      this.sessionService.getSession(id).subscribe(session => {
+      this.sessionService.getSession(id).valueChanges().subscribe(session => {
         this.session = session;
         // dynamically set page titles
         let pageTitle = this.title.getTitle();

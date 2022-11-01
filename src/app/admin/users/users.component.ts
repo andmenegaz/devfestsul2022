@@ -1,7 +1,7 @@
 import { UserService } from './../shared/user/user.service';
-import { FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
+import { AngularFireList } from '@angular/fire/database';
 
 @Component({
   selector: 'app-users',
@@ -9,7 +9,7 @@ import * as _ from 'lodash';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  public usersList: FirebaseListObservable<any[]>;
+  public usersList: AngularFireList<any>;
   users: any[] = [];
   nextKey: any;
   prevKeys: any[] = [];
@@ -45,6 +45,7 @@ export class UsersComponent implements OnInit {
 
   private getUsers(key?) {
     this.subscription = this.userService.getUserQuery(this.offset, key)
+      .valueChanges()
       .subscribe(users => {
         this.users = _.slice(users, 0, this.offset);
         this.nextKey = _.get(users[this.offset], '$key');
