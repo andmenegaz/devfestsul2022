@@ -11,7 +11,7 @@ import { DataBaseHelper } from '../../helper/database.helper';
 export class OrganizerService {
   private basePath: string = firebaseConfig.devfestYear + '/organizers';
   private organizers: AngularFireList<Organizer> = null;
-  private speaker: AngularFireObject<Organizer> = null;
+  private organizer: AngularFireObject<Organizer> = null;
   private firebaseStorage: any;
 
   constructor(private db: AngularFireDatabase) {
@@ -25,36 +25,36 @@ export class OrganizerService {
 
   getOrganizer(key: string): Observable<Organizer> {
     const path = `${this.basePath}/${key}`;
-    this.speaker = this.db.object(path);
-    return DataBaseHelper.getDataBaseObject<Organizer>(this.speaker);
+    this.organizer = this.db.object(path);
+    return DataBaseHelper.getDataBaseObject<Organizer>(this.organizer);
   }
 
-  createOrganizer(speaker: Organizer, file?: File): void {
-    const key = this.db.list(this.basePath).push(speaker).key;
+  createOrganizer(organizer: Organizer, file?: File): void {
+    const key = this.db.list(this.basePath).push(organizer).key;
     if (file !== undefined && file !== null) {
       this.firebaseStorage.ref(this.basePath + `/${key}`).put(file)
         .then(snapshot => snapshot.ref.getDownloadURL()
           .then(downloadUrl => {
-            speaker.photoURL = downloadUrl;
-            this.db.object(this.basePath + `/${key}`).set(speaker);
+            organizer.photoURL = downloadUrl;
+            this.db.object(this.basePath + `/${key}`).set(organizer);
           })
         );
     } else {
-      this.db.object(this.basePath + `/${key}`).set(speaker);
+      this.db.object(this.basePath + `/${key}`).set(organizer);
     }
   }
 
-  updateOrganizer(speaker: Organizer, file?: File): void {
+  updateOrganizer(organizer: Organizer, file?: File): void {
     if (file !== undefined && file !== null) {
-      this.firebaseStorage.ref(this.basePath + `/${speaker.id}`).put(file)
+      this.firebaseStorage.ref(this.basePath + `/${organizer.id}`).put(file)
         .then(snapshot => snapshot.ref.getDownloadURL()
           .then(downloadUrl => {
-            speaker.photoURL = downloadUrl;
-            this.db.object(this.basePath + `/${speaker.id}`).update(speaker);
+            organizer.photoURL = downloadUrl;
+            this.db.object(this.basePath + `/${organizer.id}`).update(organizer);
           })
         );
     } else {
-      this.db.object(this.basePath + `/${speaker.id}`).update(speaker);
+      this.db.object(this.basePath + `/${organizer.id}`).update(organizer);
     }
   }
 

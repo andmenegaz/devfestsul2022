@@ -24,8 +24,8 @@
         <label for="description" [class.active]="speaker.description && speaker.description.length > 0">Speaker Bio:</label>
       </div>
       <div class="form-group" style="padding-bottom: 25px;">
-        <label for="photoURL">Speaker Photo:</label>
-        <input type="file" class="form-control-file" id="photoURL" accept="image/jpeg,image/jpg,image/png,image/x-png" aria-describedby="Speaker Photo">
+        <label for="photo">Speaker Photo:</label>
+        <input type="file" class="form-control-file" id="photo" accept="image/jpeg,image/jpg,image/png,image/x-png" aria-describedby="Speaker Photo">
       </div>
       <div class="form-group" style="padding-bottom: 25px;">
         <input type="checkbox" id="featured" [(ngModel)]="speaker.featured" name="featured">

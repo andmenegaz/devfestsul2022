@@ -31,7 +31,7 @@ export class SpeakerEditComponent implements OnInit {
 
   updateSpeaker() {
     let photo: File;
-    for (const selectedFile of [(<HTMLInputElement>document.getElementById('photoURL')).files[0]]) {
+    for (const selectedFile of [(<HTMLInputElement>document.getElementById('photo')).files[0]]) {
       photo = selectedFile;
     }
     this.speakerService.updateSpeaker(this.speaker, photo);

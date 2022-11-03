@@ -5,7 +5,7 @@
     <div class="full-bg-img flex-center">
       <div class="container text-center">
         <div>
-          <h3>{{ config?.eventDate | date:'fullDate' }}</h3>
+          <h3>Sábado, 10 de Dezembro de 2022</h3>
         </div>
         <a *ngIf="config?.ticketURL" target="_blank" rel="noopener" [href]="config?.ticketURL"
           class="btn btn-primary btn-lg" rel="nofollow">Garanta seu ingresso</a>
@@ -19,44 +19,14 @@
   </div>
 
   <!--Section: About-->
-  <section class="text-center" *ngIf="!config?.eventType || config?.eventType === 'DevFest'">
-    <p>
-      <strong>GDG DevFests</strong> are large, community-run developer events happening around the globe focused on
-      community
-      building and learning about Google’s technologies. Each DevFest is carefully crafted for you by your local GDG
-      community
-      to bring in awesome speakers, great topics, and lots fun! While no two events will be exactly alike, each GDG
-      DevFest will,
-      at its core, be powered by a shared belief that when developers come together to exchange ideas,
-      amazing&nbsp;things&nbsp;can&nbsp;happen!
+  <section class="text-center">
+    <p> Os <strong> GDG DevFests </strong> são grandes eventos de desenvolvedores administrados pela comunidade 
+      que estão acontecendo em todo o mundo, focados na comunidade construir e aprender sobre as tecnologias do Google.
+      Cada DevFest é cuidadosamente criado para você pela sua comunidade local do GDG para trazer alto-falantes incríveis,
+      ótimos tópicos e muita diversão! Embora não haja dois eventos exatamente iguais, cada GDG DevFest, em sua essência,
+      ser alimentado por uma crença compartilhada de que quando os desenvolvedores se reúnem para trocar idéias,
+      coisas fantásticas coisas podem acontecer! &nbsp;&nbsp;&nbsp;&nbsp;
     </p>
-    <p>
-      <strong>{{ config?.eventName }}</strong> is a 100% community organized full-day developer conference featuring
-      awesome
-      world-class speakers from technology leaders within the community as well as Google product
-      team&nbsp;developers.
-    </p>
-  </section>
-  <section class="text-center" *ngIf="config?.eventType === 'IWD'">
-    <p>
-      <strong>International Women's Day</strong> (IWD) is marked on March 8th every year. In different regions around
-      the globe,
-      the focus of celebrations ranges from general respect and appreciation for women to a celebration of women's
-      economic,
-      political, and social achievements. Each IWD will be tailored to local communities of women in technology.
-      Summits and meetups
-      around the world may feature hands-on coding workshops, inspiring speakers, and networking opportunities.
-    </p>
-    <p>
-      <strong>{{ config?.eventName }}</strong> is a 100% community organized event that aims to provide visibility,
-      community, and resources
-      for women in technology. Our event is designed to promote an environment of inclusivity for women in tech, as
-      well as celebrate
-      women innovators and leaders in the industry.
-    </p>
-  </section>
-  <section class="text-center" *ngIf="config?.eventType === 'Other'">
-    <p [innerHTML]="config?.eventDescription"></p>
   </section>
   <section class="text-center"
     *ngIf="config?.eventGoogle || config?.eventFacebook || config?.eventTwitter || config?.eventInstagram">

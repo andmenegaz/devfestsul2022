@@ -6,20 +6,6 @@
     <div class="row">
       <div class="col-lg-3 col-md-6 ml-auto">
         <h5 class="title font-weight-bold mt-3 mb-4">Sobre {{ config?.groupName }}</h5>
-        <!--Social buttons-->
-        <div class="social-section mb-3">
-          <ul>
-            
-            <li *ngIf="config?.instagramLink"><a class="btn-social-all"
-                href="https://www.instagram.com/gdgfloripa" title="Instagram" target="_blank"
-                rel="noopener"><i class="fa fa-instagram"></i></a></li>
-            <li *ngIf="config?.instagramLink"><a class="btn-social-all"
-                href="https://www.instagram.com/gdg_bh" title="Instagram" target="_blank"
-                rel="noopener"><i class="fa fa-instagram"></i></a></li>
-          </ul>
-              
-        </div>
-        <!--/.Social buttons-->
         <p>O Google Developers Group é uma comunidade de usuários de tecnologia que se reúne regularmente para discutir
           as últimas tecnologias, ferramentas, SDKs, APIs do Google e muito mais.</p>
         <p><small><strong>Disclaimer:</strong>&nbsp;<em>{{ config?.groupName }} são grupos independentes; nossas
@@ -39,11 +25,13 @@
         <h5 class="title font-weight-bold mt-3 mb-4">Contato</h5>
         <ul>
           <li><a href="mailto:{{ config?.eventEmail }}" target="_blank" rel="noopener">{{ config?.eventEmail }}</a></li>
-          <li *ngIf="config?.eventTwitter"><a href="https://twitter.com/intent/tweet?text=@{{ config?.eventTwitter }}"
+          <li *ngIf="config?.eventTwitter"><i class="fa fa-twitter"></i> <a href="https://twitter.com/intent/tweet?text=@{{ config?.eventTwitter }}"
               target="_blank" rel="noopener">@{{ config?.eventTwitter }}</a></li>
-          <li *ngIf="config?.twitterLink"><a href="https://twitter.com/intent/tweet?text=@{{ config?.twitterLink }}"
+          <li *ngIf="config?.twitterLink"><i class="fa fa-twitter"></i> <a href="https://twitter.com/intent/tweet?text=@{{ config?.twitterLink }}"
               target="_blank" rel="noopener">@{{ config?.twitterLink }}</a></li>
-        </ul>
+          <li *ngIf="config?.eventInstagram"><a href="https://www.instagram.com/{{ config?.eventInstagram }}"
+              target="_blank" rel="noopener"><i class="fa fa-instagram"> </i>@{{ config?.eventInstagram }}</a></li>
+          </ul>
       </div>
       <hr class="w-100 clearfix d-sm-none">
       <div class="col-lg-2 col-md-6 ml-auto">

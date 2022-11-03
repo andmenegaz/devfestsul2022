@@ -42,10 +42,12 @@ export class SpeakerService {
     const key = this.db.list(this.basePath).push(speaker).key;
     if (file !== undefined && file !== null) {
       this.firebaseStorage.ref(this.basePath + `/${key}`).put(file)
-        .then(snapshot => {
-          speaker.photoURL = snapshot.downloadURL;
-          this.db.object(this.basePath + `/${key}`).set(speaker);
-        });
+        .then(snapshot => snapshot.ref.getDownloadURL()
+          .then(downloadUrl => {
+            speaker.photoURL = downloadUrl;
+            this.db.object(this.basePath + `/${key}`).set(speaker);
+          })
+        );
     } else {
       this.db.object(this.basePath + `/${key}`).set(speaker);
     }
@@ -54,10 +56,12 @@ export class SpeakerService {
   updateSpeaker(speaker: Speaker, file?: File): void {
     if (file !== undefined && file !== null) {
       this.firebaseStorage.ref(this.basePath + `/${speaker.id}`).put(file)
-        .then(snapshot => {
-          speaker.photoURL = snapshot.downloadURL;
-          this.db.object(this.basePath + `/${speaker.id}`).update(speaker);
-        });
+        .then(snapshot => snapshot.ref.getDownloadURL()
+          .then(downloadUrl => {
+            speaker.photoURL = downloadUrl;
+            this.db.object(this.basePath + `/${speaker.id}`).update(speaker);
+          })
+        );
     } else {
       this.db.object(this.basePath + `/${speaker.id}`).update(speaker);
     }

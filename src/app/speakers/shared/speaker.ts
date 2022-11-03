@@ -6,7 +6,7 @@ export class Speaker {
   title: string;
   company: string;
   description: string;
-  photoURL: File;
+  photoURL: string;
   googleLink: string;
   facebookLink: string;
   twitterLink: string;

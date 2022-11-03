@@ -20,7 +20,7 @@ export class SpeakerListComponent implements OnInit {
   constructor(
     private speakerService: SpeakerService,
     public authService: AuthService,
-    private router: Router
+    public router: Router
   ) { }
 
   ngOnInit() {
