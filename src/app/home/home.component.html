@@ -75,6 +75,27 @@
   </section>
   <!--Section: Featured Speakers-->
 
+  <div class="divider-new" id="the-venue" *ngIf="config?.venueName">
+    <h2 class="h2-responsive">The Venue</h2>
+  </div>
+
+  <!--Section: The Venue-->
+  <section *ngIf="config?.venueName">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="h2-responsive">{{ config?.venueName }}</h2>
+        <hr>
+        <p [innerHTML]="config?.venueDescription"></p>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <img class="venue-photo" *ngIf="config?.venuePhoto" [src]="config?.venuePhoto" alt="{{ config?.venueName }}" title="{{ config?.venueName }}"/>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/Section: The Venue-->
+
   <div class="divider-new pt-5">
     <h2 class="h2-responsive">Código de Conduta</h2>
   </div>
