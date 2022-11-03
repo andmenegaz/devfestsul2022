@@ -4,16 +4,11 @@
   <section class="view intro-1">
     <div class="full-bg-img flex-center">
       <div class="container text-center">
-        <div class="container text-center"><img class="logo-banner" src="../../assets/img/logo.png" alt="DEV FEST" />
-        </div>
         <div>
-          <h3>21/06 • 25/06</h3>
+          <h3>{{ config?.eventDate | date:'fullDate' }}</h3>
         </div>
         <a *ngIf="config?.ticketURL" target="_blank" rel="noopener" [href]="config?.ticketURL"
           class="btn btn-primary btn-lg" rel="nofollow">Garanta seu ingresso</a>
-      </div>
-      <div class="arrow bounce">
-        <a class="fa fa-chevron-down fa-1x" [ngx-scroll-to]="'#about'"></a>
       </div>
     </div>
   </section>

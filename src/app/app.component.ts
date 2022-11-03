@@ -13,8 +13,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  eventName: string;
-
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -24,7 +22,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.siteConfigService.getConfig();
-    this.eventName = this.siteConfigService.siteConfig.eventName;
 
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
@@ -40,8 +37,8 @@ export class AppComponent implements OnInit {
       .subscribe((event) => {
         // dynamically set page titles
         let pageTitle = this.title.getTitle();
-        if (this.eventName) {
-          pageTitle = this.eventName;
+        if (this.siteConfigService.siteConfig?.eventName) {
+          pageTitle = this.siteConfigService.siteConfig?.eventName;
         }
         if (event['title']) {
           pageTitle += ' :: ' + event['title'];
