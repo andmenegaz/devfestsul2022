@@ -33,20 +33,24 @@ export class SponsorService {
     const key = this.db.list(this.basePath).push(sponsor).key;
     if (file) {
       this.firebaseStorage.ref(this.basePath + `/${key}`).put(file)
-        .then(snapshot => {
-          sponsor.logoURL = snapshot.downloadURL;
-          this.db.object(this.basePath + `/${key}`).set(sponsor);
-        });
+      .then(snapshot => snapshot.ref.getDownloadURL()
+        .then(downloadUrl => {
+            sponsor.logoURL = downloadUrl;
+            this.db.object(this.basePath + `/${key}`).set(sponsor);
+        })
+      );
     }
   }
 
   updateSponsor(sponsor: Sponsor, file?: File): void {
     if (file !== undefined && file !== null) {
       this.firebaseStorage.ref(this.basePath + `/${sponsor.id}`).put(file)
-        .then(snapshot => {
-          sponsor.logoURL = snapshot.downloadURL;
-          this.db.object(this.basePath + `/${sponsor.id}`).update(sponsor);
-        });
+      .then(snapshot => snapshot.ref.getDownloadURL()
+        .then(downloadUrl => {
+            sponsor.logoURL = downloadUrl;
+            this.db.object(this.basePath + `/${sponsor.id}`).update(sponsor);
+        })
+      );
     } else {
       this.db.object(this.basePath + `/${sponsor.id}`).update(sponsor);
     }
