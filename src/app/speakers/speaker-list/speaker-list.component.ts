@@ -19,7 +19,7 @@ export class SpeakerListComponent implements OnInit {
 
   constructor(
     private speakerService: SpeakerService,
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router
   ) { }
 

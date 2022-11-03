@@ -56,6 +56,7 @@ import { SessionSurveyComponent } from './sessions/session-survey/session-survey
 import { SurveysComponent } from './admin/surveys/surveys.component';
 import { KeysPipe } from './pipes/keys.pipe';
 import { CocComponent } from './coc/coc.component';
+import { DataBaseHelper } from './helper/database.helper';
 
 @NgModule({
   schemas: [ NO_ERRORS_SCHEMA ],
@@ -115,7 +116,8 @@ import { CocComponent } from './coc/coc.component';
     LevelService,
     TicketService,
     ScheduleService,
-    AppCustomPreloader
+    AppCustomPreloader,
+    DataBaseHelper
   ],
   bootstrap: [AppComponent]
 })

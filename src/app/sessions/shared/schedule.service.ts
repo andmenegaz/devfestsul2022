@@ -1,6 +1,7 @@
 import { firebaseConfig } from './../../../environments/firebase.config';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
+import { DataBaseHelper } from '../../helper/database.helper';
 
 @Injectable()
 export class ScheduleService {
@@ -15,7 +16,7 @@ export class ScheduleService {
     }
     
     this.schedules = this.db.list(`${year}/schedules/${uid}/`)
-    return this.schedules.valueChanges();
+    return DataBaseHelper.getDataBaseList<any>(this.schedules);
   }
 
   getScheduleSession(uid, session, year?: string|number) {
@@ -23,7 +24,7 @@ export class ScheduleService {
         year = firebaseConfig.devfestYear;
     }
     this.sessionSchedule = this.db.object(`${year}/schedules/${uid}/${session}/`)
-    return this.sessionSchedule.valueChanges();
+    return DataBaseHelper.getDataBaseObject<any>(this.sessionSchedule);
   }
 
   removeFromSchedule() {

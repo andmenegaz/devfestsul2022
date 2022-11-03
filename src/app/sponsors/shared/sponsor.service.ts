@@ -5,6 +5,7 @@ import firebase from 'firebase/app';
 import 'firebase/storage';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import { DataBaseHelper } from '../../helper/database.helper';
 
 @Injectable()
 export class SponsorService {
@@ -19,13 +20,13 @@ export class SponsorService {
 
   getSponsorList(): Observable<Sponsor[]> {
     this.sponsors = this.db.list(this.basePath, ref => ref);
-    return this.sponsors.valueChanges();
+    return DataBaseHelper.getDataBaseList<Sponsor>(this.sponsors);
   }
 
   getSponsor(key: string): Observable<Sponsor> {
     const path = `${this.basePath}/${key}`;
     this.sponsor = this.db.object(path);
-    return this.sponsor.valueChanges();
+    return DataBaseHelper.getDataBaseObject<Sponsor>(this.sponsor);
   }
 
   createSponsor(sponsor: Sponsor, file?: File): void {

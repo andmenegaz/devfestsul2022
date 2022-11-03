@@ -31,7 +31,7 @@ export class OrganizerEditComponent implements OnInit {
 
   updateOrganizer() {
     let photo: File;
-    for (const selectedFile of [(<HTMLInputElement>document.getElementById('photoURL')).files[0]]) {
+    for (const selectedFile of [(<HTMLInputElement>document.getElementById('photo')).files[0]]) {
       photo = selectedFile;
     }
     this.organizerService.updateOrganizer(this.organizer, photo);

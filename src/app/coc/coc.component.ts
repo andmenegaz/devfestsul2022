@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CocComponent implements OnInit {
   constructor(
-    private siteConfigService: SiteConfigService
+    public siteConfigService: SiteConfigService
   ) { }
 
   ngOnInit() {

@@ -26,7 +26,7 @@ export class SessionListComponent implements OnInit {
     private sessionService: SessionService,
     private sectionService: SectionService,
     private speakerService: SpeakerService,
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router
   ) { }
 

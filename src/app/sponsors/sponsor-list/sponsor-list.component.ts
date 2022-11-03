@@ -25,9 +25,9 @@ export class SponsorListComponent implements OnInit {
   constructor(
     private sponsorService: SponsorService,
     private levelService: LevelService,
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router,
-    private siteConfigService: SiteConfigService
+    public siteConfigService: SiteConfigService
   ) { }
 
   ngOnInit() {

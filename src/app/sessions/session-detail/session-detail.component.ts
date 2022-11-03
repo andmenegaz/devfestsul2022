@@ -24,11 +24,11 @@ export class SessionDetailComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRouter: ActivatedRoute,
-    private authService: AuthService,
+    public authService: AuthService,
     private sessionService: SessionService,
     private speakerService: SpeakerService,
     private title: Title,
-    private siteConfigService: SiteConfigService,
+    public siteConfigService: SiteConfigService,
     private scheduleService: ScheduleService
   ) { }
 

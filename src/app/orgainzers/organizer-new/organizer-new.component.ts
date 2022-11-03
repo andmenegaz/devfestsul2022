@@ -22,7 +22,7 @@ export class OrganizerNewComponent implements OnInit {
 
   addOrganizer() {
     let photo: File;
-    for (const selectedFile of [(<HTMLInputElement>document.getElementById('photoURL')).files[0]]) {
+    for (const selectedFile of [(<HTMLInputElement>document.getElementById('photo')).files[0]]) {
       photo = selectedFile;
     }
     this.organizerService.createOrganizer(this.organizer, photo);

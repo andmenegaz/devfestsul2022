@@ -4,6 +4,7 @@ import { firebaseConfig } from './../../../environments/firebase.config';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import { DataBaseHelper } from '../../helper/database.helper';
 
 @Injectable()
 export class SessionService {
@@ -15,12 +16,12 @@ export class SessionService {
 
   getSessionList(): Observable<Session[]> {
     this.sessions = this.db.list(this.basePath, ref => ref);
-    return this.sessions.valueChanges();
+    return DataBaseHelper.getDataBaseList<Session>(this.sessions);
   }
 
   getSession(key: string): Observable<Session> {
     this.session = this.db.object(`${this.basePath}/${key}`);
-    return this.session.valueChanges();
+    return DataBaseHelper.getDataBaseObject<Session>(this.session);
   }
 
   createSession(session: Session): void {

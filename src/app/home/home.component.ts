@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private speakerService: SpeakerService,
-    private siteConfigService: SiteConfigService,
+    public siteConfigService: SiteConfigService,
     private sponsorService: SponsorService,
     private levelService: LevelService,
     private ticketService: TicketService

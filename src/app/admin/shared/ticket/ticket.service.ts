@@ -3,6 +3,7 @@ import { firebaseConfig } from './../../../../environments/firebase.config';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import { DataBaseHelper } from '../../../helper/database.helper';
 
 @Injectable()
 export class TicketService {
@@ -14,13 +15,13 @@ export class TicketService {
 
   getTicketList(): Observable<Ticket[]> {
     this.tickets = this.db.list(this.basePath, ref => ref);
-    return this.tickets.valueChanges();
+    return DataBaseHelper.getDataBaseList<Ticket>(this.tickets);
   }
 
   getTicket(key: string): Observable<Ticket> {
     const path = `${this.basePath}/${key}`;
     this.ticket = this.db.object(path);
-    return this.ticket.valueChanges();
+    return DataBaseHelper.getDataBaseObject<any>(this.ticket);
   }
 
   createTicket(ticket: Ticket): void {

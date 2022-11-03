@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
   copyright = new Date().getFullYear();
 
-  constructor(private siteConfigService: SiteConfigService) { }
+  constructor(public siteConfigService: SiteConfigService) { }
 
   ngOnInit() {
   }

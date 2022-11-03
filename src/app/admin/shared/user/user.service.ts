@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import { DataBaseHelper } from '../../../helper/database.helper';
 
 @Injectable()
 export class UserService {
@@ -11,12 +12,12 @@ export class UserService {
 
   getUserList(): Observable<any[]> {
     this.users = this.db.list(this.basePath);
-    return this.users.valueChanges();
+    return DataBaseHelper.getDataBaseList<any>(this.users);
   }
 
   getUserQuery(offset, startKey?): Observable<any[]> {
     this.users = this.db.list(this.basePath, ref => ref.orderByKey().startAt(startKey).limitToFirst(offset +1));
-    return this.users.valueChanges();
+    return DataBaseHelper.getDataBaseList<any>(this.users);
   }
 
   isAdmin(key: string) {

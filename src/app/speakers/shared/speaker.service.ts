@@ -5,6 +5,7 @@ import firebase from 'firebase/app';
 import 'firebase/storage';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import { DataBaseHelper } from '../../helper/database.helper';
 
 @Injectable()
 export class SpeakerService {
@@ -19,13 +20,13 @@ export class SpeakerService {
 
   getSpeakerList(): Observable<Speaker[]> {
     this.speakers = this.db.list(this.basePath, ref => ref.orderByChild('name'));
-    return this.speakers.valueChanges();
+    return DataBaseHelper.getDataBaseList<Speaker>(this.speakers);
   }
 
   getSpeaker(key: string): Observable<Speaker> {
     const path = `${this.basePath}/${key}`;
     this.speaker = this.db.object(path);
-    return this.speaker.valueChanges();
+    return DataBaseHelper.getDataBaseObject<Speaker>(this.speaker);
   }
 
   getSpeakerName(key: string): any {

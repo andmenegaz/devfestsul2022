@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { firebaseConfig } from './../../../environments/firebase.config';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import { DataBaseHelper } from '../../helper/database.helper';
 
 @Injectable()
 export class SectionService {
@@ -12,7 +13,7 @@ export class SectionService {
 
   getSectionList(): Observable<Section[]> {
     this.sections = this.db.list<Section>(`${firebaseConfig.devfestYear}/sections`, ref => ref);
-    return this.sections.valueChanges();
+    return DataBaseHelper.getDataBaseList<Section>(this.sections);
   }
 
   createSection(section: Section): void {

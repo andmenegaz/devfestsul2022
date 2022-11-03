@@ -19,8 +19,8 @@ export class OrganizerListComponent implements OnInit {
 
   constructor(
     private organizerService: OrganizerService,
-    private authService: AuthService,
-    private router: Router
+    public authService: AuthService,
+    public router: Router
   ) { }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class OrganizerListComponent implements OnInit {
 
   deleteOrganizer(organizer) {
     if (window.confirm('Are you sure you want to delete this organizer?')) {
-      this.organizerService.deleteOrganizer(organizer.$key);
+       this.organizerService.deleteOrganizer(organizer.$key);
     }
   }
 

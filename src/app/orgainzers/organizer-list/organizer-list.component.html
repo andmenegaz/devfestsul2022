@@ -16,7 +16,7 @@
         <button type="button" class="btn btn-sm btn-primary" *ngIf="authService.isLoggedIn && authService.isAdmin" routerLink="/organizers/{{ organizer.$key }}/edit">
           <i class="fa fa-pencil" aria-hidden="true"></i>
         </button>
-        <button type="button" class="btn btn-sm btn-danger" *ngIf="authService.isLoggedIn && authService.isAdmin" (click)="deleteorganizer(organizer)">
+        <button type="button" class="btn btn-sm btn-danger" *ngIf="authService.isLoggedIn && authService.isAdmin" (click)="deleteOrganizer(organizer)">
           <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
         <h4 class="show-modal" (click)="showModal(organizer)" [innerHTML]="organizer.name"></h4>

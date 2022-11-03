@@ -13,7 +13,7 @@ export class TopMenuComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private siteConfigService: SiteConfigService
+    public siteConfigService: SiteConfigService
   ) { }
 
   ngOnInit() {
