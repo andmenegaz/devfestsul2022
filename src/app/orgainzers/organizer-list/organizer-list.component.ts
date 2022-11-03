@@ -29,7 +29,7 @@ export class OrganizerListComponent implements OnInit {
 
   deleteOrganizer(organizer) {
     if (window.confirm('Are you sure you want to delete this organizer?')) {
-       this.organizerService.deleteOrganizer(organizer.$key);
+       this.organizerService.deleteOrganizer(organizer.id);
     }
   }
 

@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 
 export class Organizer {
-  $key: string;
+  id: string;
   name: string;
   title: string;
   company: string;

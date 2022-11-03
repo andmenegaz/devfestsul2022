@@ -49,7 +49,7 @@ export class SessionDetailComponent implements OnInit {
           pageTitle += ' :: ' + this.session.title;
         }
         this.title.setTitle(pageTitle);
-        this.mySchedule = this.scheduleService.getScheduleSession(this.authService.userId, this.session.$key);
+        this.mySchedule = this.scheduleService.getScheduleSession(this.authService.userId, this.session.id);
       });
     });
   }
@@ -69,19 +69,19 @@ export class SessionDetailComponent implements OnInit {
   }
 
   editDetails(session) {
-    this.router.navigate([`/sessions/${session.$key}/edit`]);
+    this.router.navigate([`/sessions/${session.id}/edit`]);
   }
 
   delete(session) {
     if (window.confirm('Are you sure you want to delete this session?')) {
-      this.sessionService.deleteSession(session.$key);
+      this.sessionService.deleteSession(session.id);
       this.router.navigate(['/sessions']);
     }
   }
 
   addToSchedule() {
     this.scheduleService.setSchedule({
-      id: this.session.$key,
+      id: this.session.id,
       title: this.session.title,
       time: this.session.time,
       tag: this.session.tag ? this.session.tag : null,
@@ -98,7 +98,7 @@ export class SessionDetailComponent implements OnInit {
 
   openFeedback(session) {
     if ((this.authService.isLoggedIn)) {
-      this.router.navigate([`/sessions/${session.$key}/survey`]);
+      this.router.navigate([`/sessions/${session.id}/survey`]);
     }
   }
 

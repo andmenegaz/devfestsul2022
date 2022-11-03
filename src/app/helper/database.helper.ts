@@ -18,7 +18,7 @@ export class DataBaseHelper {
 
     static documentToDomainObject = _ => {
         const object = _.payload.val();
-        if (object) object.$key = _.key;
+        if (object) object.id = _.key;
         return object;
     }
 }
