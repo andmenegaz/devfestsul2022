@@ -4,8 +4,8 @@
 
 .intro-1 {
   background: url("assets/img/banner-mobile.png") no-repeat;
-  background-size: contain;
-  height: 70vh;
+  background-size: cover;
+  height: 490px;
 
   @media screen and (min-width: 768px) {
     background: url("assets/img/banner.png") no-repeat;
@@ -50,10 +50,14 @@ body {
 
 .banner-title {
   position: absolute;
-  bottom: 0;
+  bottom: 85px;
 
   @media screen and (min-width: 768px) {
-    bottom: 130px;
+    bottom: 30px;
+  }
+
+  @media screen and (min-width: 1028px) {
+    bottom: 125px;
   }
 
   h3 {
