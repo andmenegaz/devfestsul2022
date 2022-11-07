@@ -1,14 +1,13 @@
-<header *ngIf="siteConfigService.siteConfig as config">
+<header *ngIf="siteConfigService.siteConfig as config" style="position: relative">
   <app-top-menu></app-top-menu>
   <!--Intro Section-->
   <section class="view intro-1">
     <div class="full-bg-img flex-center">
-      <div class="container text-center">
+      <div class="container text-center banner-title">
         <div>
-          <h3>Sábado, 10 de Dezembro de 2022</h3>
+          <h3>Sábado, 10 de dezembro de 2022</h3>
         </div>
-        <a *ngIf="config?.ticketURL" target="_blank" rel="noopener" [href]="config?.ticketURL"
-          class="btn btn-primary btn-lg" rel="nofollow">Garanta seu ingresso</a>
+        <a *ngIf="config?.ticketURL" target="_blank" rel="noopener" [href]="config?.ticketURL" class="btn btn-primary btn-lg" rel="nofollow">Garanta seu ingresso agora</a>
       </div>
     </div>
   </section>
@@ -20,7 +19,7 @@
 
   <!--Section: About-->
   <section class="text-center">
-    <p> Os <strong> GDG DevFests </strong> são grandes eventos de desenvolvedores administrados pela comunidade 
+    <p> Os <strong> GDG DevFests </strong> são grandes eventos de desenvolvedores administrados pela comunidade
       que estão acontecendo em todo o mundo, focados na comunidade construir e aprender sobre as tecnologias do Google.
       Cada DevFest é cuidadosamente criado para você pela sua comunidade local do GDG para trazer alto-falantes incríveis,
       ótimos tópicos e muita diversão! Embora não haja dois eventos exatamente iguais, cada GDG DevFest, em sua essência,
@@ -28,24 +27,15 @@
       coisas fantásticas coisas podem acontecer! &nbsp;&nbsp;&nbsp;&nbsp;
     </p>
   </section>
-  <section class="text-center"
-    *ngIf="config?.eventGoogle || config?.eventFacebook || config?.eventTwitter || config?.eventInstagram">
+  <section class="text-center" *ngIf="config?.eventGoogle || config?.eventFacebook || config?.eventTwitter || config?.eventInstagram">
     <!--Social buttons-->
     <div class="social-section mb-3">
-      <h5 class="title mt-3 mb-4">Nos siga nas redes sociais</h5>
+      <h5 class="title mt-3 mb-4">Nos siga nas redes sociais para mais atualizações</h5>
       <ul>
-        <li *ngIf="config?.eventGoogle"><a class="btn-social-all"
-            href="https://plus.google.com/{{ config?.eventGoogle }}" title="Google+" target="_blank" rel="noopener"><i
-              class="fa fa-google-plus"></i></a></li>
-        <li *ngIf="config?.eventFacebook"><a class="btn-social-all"
-            href="https://www.facebook.com/{{ config?.eventFacebook }}" title="Facebook" target="_blank"
-            rel="noopener"><i class="fa fa-facebook"></i></a></li>
-        <li *ngIf="config?.eventTwitter"><a class="btn-social-all"
-            href="https://twitter.com/{{ config?.eventTwitter }}" title="Twitter" target="_blank" rel="noopener"><i
-              class="fa fa-twitter"></i></a></li>
-        <li *ngIf="config?.eventInstagram"><a class="btn-social-all"
-            href="https://www.instagram.com/{{ config?.eventInstagram }}" title="Instagram" target="_blank"
-            rel="noopener"><i class="fa fa-instagram"></i></a></li>
+        <li *ngIf="config?.eventGoogle"><a class="btn-social-all" href="https://plus.google.com/{{ config?.eventGoogle }}" title="Google+" target="_blank" rel="noopener"><i class="fa fa-google-plus"></i></a></li>
+        <li *ngIf="config?.eventFacebook"><a class="btn-social-all" href="https://www.facebook.com/{{ config?.eventFacebook }}" title="Facebook" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a></li>
+        <li *ngIf="config?.eventTwitter"><a class="btn-social-all" href="https://twitter.com/{{ config?.eventTwitter }}" title="Twitter" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
+        <li *ngIf="config?.eventInstagram"><a class="btn-social-all" href="https://www.instagram.com/{{ config?.eventInstagram }}" title="Instagram" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a></li>
       </ul>
     </div>
     <!--/.Social buttons-->
@@ -59,38 +49,32 @@
   <!--Section: Featured Speakers-->
   <section class="section team-section" *ngIf="(speakers$ | async)?.length > 0 && speakers$ | async as speakers">
     <div class="row text-center">
-      <div *ngFor="let speaker of speakers" class="col-lg-3 col-md-6 mb-r"
-        style="padding-left: 40px; padding-right: 40px; margin: 0 auto;">
+      <div *ngFor="let speaker of speakers" class="col-lg-3 col-md-6 mb-r" style="padding-left: 40px; padding-right: 40px; margin: 0 auto;">
         <div class="avatar" title="{{ speaker.name }}" alt="{{ speaker.name }}">
-          <img *ngIf="!speaker.photoURL" class="rounded-circle z-depth-1"
-            style="background-image: url('../../../assets/img/user-default.png')">
-          <img *ngIf="speaker.photoURL" class="rounded-circle z-depth-1"
-            [ngStyle]="{'background-image': 'url(' + speaker.photoURL + ')'}">
+          <img *ngIf="!speaker.photoURL" class="rounded-circle z-depth-1" style="background-image: url('../../../assets/img/user-default.png')">
+          <img *ngIf="speaker.photoURL" class="rounded-circle z-depth-1" [ngStyle]="{'background-image': 'url(' + speaker.photoURL + ')'}">
         </div>
         <h4><span [innerHTML]="speaker.name"></span></h4>
-        <h6><span [innerHTML]="speaker.title"></span><br /><strong *ngIf="speaker.company">@&nbsp;<span
-              [innerHTML]="speaker.company"></span></strong></h6>
+        <h6><span [innerHTML]="speaker.title"></span><br /><strong *ngIf="speaker.company">@&nbsp;<span [innerHTML]="speaker.company"></span></strong></h6>
       </div>
     </div>
   </section>
   <!--Section: Featured Speakers-->
 
   <div class="divider-new" id="the-venue" *ngIf="config?.venueName">
-    <h2 class="h2-responsive">The Venue</h2>
+    <h2 class="h2-responsive">Local</h2>
   </div>
 
   <!--Section: The Venue-->
   <section *ngIf="config?.venueName">
     <div class="row">
       <div class="col-md-6">
-        <h2 class="h2-responsive">{{ config?.venueName }}</h2>
-        <hr>
+        <h2 class="h2-responsive">Nstay Lifestyle </h2>
+        <p><small>(Antigo {{ config?.venueName }})</small></p>
         <p [innerHTML]="config?.venueDescription"></p>
       </div>
       <div class="col-md-6">
-        <div class="card">
-          <img class="venue-photo" *ngIf="config?.venuePhoto" [src]="config?.venuePhoto" alt="{{ config?.venueName }}" title="{{ config?.venueName }}"/>
-        </div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14149.005084242837!2d-48.5124287!3d-27.5547112!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd2bcbaa6036deb39!2sNstay%20Lifestyle%20%7C%20Viver%20por%20Assinatura!5e0!3m2!1sen!2sbr!4v1667861466139!5m2!1sen!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
@@ -101,18 +85,17 @@
   </div>
 
   <!--Section: CoC-->
-  <section id="coc" class="text-center">
+  <div id="coc" class="text-center mb-5">
     <h5>Seja legal, respeite e colabore com as pessoas.</h5>
     <p>{{ config?.eventName }} é um evento dedicado a prover um ambiente livre de assédios para todes.</p>
-    <p>
+    <p class="pb-5">
       Antes de participar, reveja o <a href="http://gdg.rocks/codigodeconduta" target="_blank" rel="noopener">Código
         de conduta do {{ config?.eventName }}</a>.
       <br />Este Código de Conduta se aplica a todes que irão participar, palestrar, organizar fornecer ou se envolver
       de qualquer forma ao {{ config?.eventName }}.
-      <br />Por favor <a href="mailto:{{ config?.eventEmail }}?subject=Code of Conduct - {{ config?.eventName }}"
-        target="_blank" rel="noopener">entre em contato conosco</a> se tiver alguma dúvida.
+      <br />Por favor <a href="mailto:{{ config?.eventEmail }}?subject=Code of Conduct - {{ config?.eventName }}" target="_blank" rel="noopener">entre em contato conosco</a> se tiver alguma dúvida.
     </p>
-  </section>
+  </div>
   <!--Section: CoC-->
 
   <div class="divider-new pt-5" *ngIf="(tickets$ | async)?.length > 0">
@@ -122,8 +105,7 @@
   <!--Section: Pricing-->
   <section class="section" *ngIf="(tickets$ | async)?.length > 0 && tickets$ | async as tickets">
     <div class="row pt-3">
-      <div class="mb-r" *ngFor="let ticket of tickets; let i = index;"
-        [ngClass]="tickets.length > 3 ? 'col-lg-3' : 'col-lg-4'" style="padding: 20px 40px; margin: 0 auto;">
+      <div class="mb-r" *ngFor="let ticket of tickets; let i = index;" [ngClass]="tickets.length > 3 ? 'col-lg-3' : 'col-lg-4'" style="padding: 20px 40px; margin: 0 auto;">
         <div class="card" *ngIf="ticket.active">
           <div class="card-header white-text text-center" [ngClass]="styles[i]">
             <h1 class="dollar">{{ ticket.price }}</h1>
@@ -162,8 +144,7 @@
                 &nbsp;
               </span>
               <div class="text-center ticket-button">
-                <a target="_blank" rel="noopener" [href]="config?.ticketURL" class="btn btn-primary waves-light"
-                  rel="nofollow">Buy Ticket</a>
+                <a target="_blank" rel="noopener" [href]="config?.ticketURL" class="btn btn-primary waves-light" rel="nofollow">Buy Ticket</a>
               </div>
             </div>
           </div>
@@ -191,8 +172,7 @@
           <ng-container *ngIf="level.id === sponsor.level">
             <span class="col-md-6" style="padding: 20px 40px; margin: 0 auto;">
               <a [href]="sponsor.websiteLink" target="_blank" rel="noopener">
-                <img [src]="sponsor.logoURL" class="sponsor-img" title="{{ sponsor.name }}"
-                  alt="{{ sponsor.name }}" />
+                <img [src]="sponsor.logoURL" class="sponsor-img" title="{{ sponsor.name }}" alt="{{ sponsor.name }}" />
               </a>
             </span>
           </ng-container>

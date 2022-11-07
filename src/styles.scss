@@ -3,25 +3,60 @@
 // @import "./styles/loading.scss";
 
 .intro-1 {
-  background: url("assets/img/banner.png") no-repeat center center;
-  background-size: cover;
-  height: 100vh;
+  background: url("assets/img/banner-mobile.png") no-repeat;
+  background-size: contain;
+  height: 70vh;
+
+  @media screen and (min-width: 768px) {
+    background: url("assets/img/banner.png") no-repeat;
+    background-size: contain;
+    height: 40vh;
+  }
+
+  @media screen and (min-width: 1028px) {
+    background: url("assets/img/banner.png") no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+  }
 }
 
 .view[_ngcontent-c2] {
   height: 100vh;
 }
 
-body{
+body {
   background: url("assets/img/background.png") repeat center center;
   color: #000000;
 }
 
-.color-black{
+.color-black {
   background-color: #000000 !important;
 }
 
-.divider-new:before, .divider-new:after {
-  background-image: url("assets/img/line.png") !important;
+.divider-new:before,
+.divider-new:after {
   background-size: cover !important;
+
+  background: linear-gradient(
+    90deg,
+    rgba(204, 0, 0, 1) 0%,
+    rgba(215, 66, 6, 1) 20%,
+    rgba(227, 140, 12, 1) 40%,
+    rgba(238, 205, 17, 1) 60%,
+    rgba(21, 255, 40, 1) 80%,
+    rgba(21, 89, 255, 1) 100%
+  ) !important;
+}
+
+.banner-title {
+  position: absolute;
+  bottom: 0;
+
+  @media screen and (min-width: 768px) {
+    bottom: 130px;
+  }
+
+  h3 {
+    color: #000;
+  }
 }

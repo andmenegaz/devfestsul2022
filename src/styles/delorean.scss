@@ -76,6 +76,10 @@
   font-size:1.2rem;
 }
 
+.section.team-section {
+  min-height: calc(80vh - 410px);
+}
+
 .section.team-section .avatar,
 .author-box .avatar {
   margin: 0 auto;
