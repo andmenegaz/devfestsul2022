@@ -15,7 +15,7 @@ export class SessionService {
   constructor(private db: AngularFireDatabase) { }
 
   getSessionList(): Observable<Session[]> {
-    this.sessions = this.db.list(this.basePath, ref => ref);
+    this.sessions = this.db.list(this.basePath, ref => ref.orderByChild('time'));
     return DataBaseHelper.getDataBaseList<Session>(this.sessions);
   }
 

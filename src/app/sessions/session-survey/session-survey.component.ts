@@ -18,7 +18,6 @@ import { Observable } from 'rxjs';
 export class SessionSurveyComponent implements OnInit {
   session: Session = new Session();
   speaker: Speaker;
-  eventName: string;
   survey: Survey = new Survey();
 
   constructor(
@@ -32,16 +31,14 @@ export class SessionSurveyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.eventName = this.siteConfigService.siteConfig.eventName;
-
     this.activatedRouter.params.subscribe((params) => {
       const id = params['id'];
       this.sessionService.getSession(id).subscribe(session => {
         this.session = session;
         // dynamically set page titles
         let pageTitle = this.title.getTitle();
-        if (this.eventName) {
-          pageTitle = this.eventName;
+        if (this.siteConfigService.siteConfig?.eventName) {
+          pageTitle = this.siteConfigService.siteConfig?.eventName;
         }
         if (this.session.title) {
           pageTitle += ' :: ' + this.session.title;

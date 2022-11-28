@@ -1,7 +1,7 @@
 <app-top-menu></app-top-menu>
 
 <div class="between-sections"><br><br></div>
-<div class="container">
+<div class="container" *ngIf="session.id">
   <!--Section: Session-->
   <section class="section">
     <div style="padding: 40px 0;">
@@ -31,9 +31,9 @@
         </div>
         <!--/Post text-->
 
-        <div class="text-center" *ngIf="authService.isLoggedIn && mySchedule | async as schedule" style="margin-top: 35px;">
-          <button *ngIf="!schedule.value" (click)="addToSchedule()" type="button" class="btn btn-outline-primary" title="Add to My Schedule"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Add to My Schedule</button>
-          <button *ngIf="schedule.value" (click)="removeFromSchedule()" type="button" class="btn btn-outline-primary" title="Remove from My Schedule"><i class="fa fa-calendar-times-o" aria-hidden="true"></i> Remove from My Schedule</button>
+        <div class="text-center" *ngIf="authService.isLoggedIn" style="margin-top: 35px;">
+          <button *ngIf="!mySchedule" (click)="addToSchedule()" type="button" class="btn btn-outline-primary" title="Add to My Schedule"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Add to My Schedule</button>
+          <button *ngIf="mySchedule" (click)="removeFromSchedule()" type="button" class="btn btn-outline-primary" title="Remove from My Schedule"><i class="fa fa-calendar-times-o" aria-hidden="true"></i> Remove from My Schedule</button>
           <button (click)="openFeedback(session)" type="button" class="btn btn-primary" title="Give Session Feedback"><i class="fa fa-commenting" aria-hidden="true"></i> Give Session Feedback</button>
         </div>
 
