@@ -6,11 +6,11 @@
   <section class="section">
     <div class="d-print-none">
       <div class="pull-right" style="margin-top: -45px;">
-        <a href="javascript:window.print();" title="Print Schedule"><i class="fa fa-print" aria-hidden="true"></i> Print Schedule</a>
+        <a href="javascript:window.print();" title="Print Schedule"><i class="fa fa-print" aria-hidden="true"></i> Imprimir Agenda</a>
       </div>
       <h1 class="section-heading">My Schedule</h1>
       <div class="text-center">
-        <button type="button" class="btn btn-primary" routerLink="/sessions">View Full Schedule</button>
+        <button type="button" class="btn btn-primary" routerLink="/sessions">Ver toda Programação</button>
       </div>
     </div>
     <div *ngIf="(mySessions$ | async)?.length !== 0 && mySessions$ | async as mySessions" class="table-responsive">
@@ -40,10 +40,10 @@
       </table>
     </div>
     <div class="text-center" *ngIf="(sessions$ | async)?.length !== 0 && (mySessions$ | async)?.length === 0">
-      <h5>You haven't added any sessions yet! Go back to the <a routerLink="/sessions">Schedule</a> and add some!</h5>
+      <h5>Você não adicionou nenhuma palestra ainda! Volte para a <a routerLink="/sessions">Programação</a> e adicione algumas!</h5>
     </div>
     <div class="text-center" *ngIf="(sessions$ | async)?.length === 0">
-      <h5>Stay tuned! Once sessions have been added, you can create your own schedule and view it here!</h5>
+      <h5>Fique ligado! Assim que adicionarmos mais palestras você poderá incluí-las aqui para organizar seu dia!</h5>
     </div>
   </section>
   <!--Section: Schedule-->
