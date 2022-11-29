@@ -29,14 +29,6 @@ export class SpeakerService {
     return DataBaseHelper.getDataBaseObject<Speaker>(this.speaker);
   }
 
-  getSpeakerName(key: string): any {
-    const path = `${this.basePath}/${key}/name`;
-    let speakerName: string;
-    this.getSpeaker(key).subscribe(snapshot => {
-      speakerName = snapshot.toString();
-    });
-    return speakerName;
-  }
 
   createSpeaker(speaker: Speaker, file?: File): void {
     const key = this.db.list(this.basePath).push(speaker).key;

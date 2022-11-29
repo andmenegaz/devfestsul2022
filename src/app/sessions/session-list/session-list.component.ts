@@ -8,6 +8,8 @@ import { Section } from './../shared/section';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { Observable } from 'rxjs';
+import { Speaker } from './../../speakers/shared/speaker';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-session-list',
@@ -18,6 +20,8 @@ import { Observable } from 'rxjs';
 export class SessionListComponent implements OnInit {
   public sessions: Observable<Session[]>;
   public sections: Observable<Section[]>;
+  public speakers: Speaker[];
+  public sessionsWithNames: Observable<any>;
   section: Section = new Section();
 
   @ViewChild('sectionModal') public sectionModal: ModalDirective;
@@ -31,7 +35,17 @@ export class SessionListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.sessions = this.sessionService.getSessionList();
+    this.speakerService.getSpeakerList().subscribe(speakers => this.speakers = speakers);
+
+    this.sessions = this.sessionService.getSessionList()
+      .pipe(map(sessions => sessions.map(session => {
+          return {
+            ...session,
+            speakerNames: session.speakers ? session.speakers.map(speakerId => this.speakers.find(speaker => speaker.id === speakerId).name) : null 
+          }
+        })
+      ));
+      
     this.sections = this.sectionService.getSectionList();
   }
 
@@ -53,9 +67,4 @@ export class SessionListComponent implements OnInit {
       this.sectionService.deleteSection(section.id);
     }
   }
-
-  getSpeakerName(speakerKey) {
-    return this.speakerService.getSpeakerName(speakerKey);
-  }
-
 }
