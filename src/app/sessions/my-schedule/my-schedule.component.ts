@@ -39,7 +39,7 @@ export class MyScheduleComponent implements OnInit {
         .pipe(map(sessions => sessions.map(session => {
           return {
             ...session,
-            speakerNames: session.speakers ? session.speakers.map(speakerId => this.speakers.find(speaker => speaker.id === speakerId).name) : null 
+            speakerNames: session.speakers ? session.speakers.map(speakerId => this.speakers.find(speaker => speaker.id === speakerId)?.name) : null 
           }
         })
       ));
