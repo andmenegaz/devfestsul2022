@@ -7,8 +7,7 @@ import { AuthService } from './../../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Session } from '../../sessions/shared/session';
-import { Observable } from 'rxjs';
-import { AngularFireList } from '@angular/fire/database';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-session-detail',
@@ -18,8 +17,7 @@ import { AngularFireList } from '@angular/fire/database';
 export class SessionDetailComponent implements OnInit {
   session: Session = new Session();
   profiles: any[];
-  eventName: string;
-  mySchedule: Observable<any>;
+  mySchedule: any;
 
   constructor(
     private router: Router,
@@ -33,24 +31,24 @@ export class SessionDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.eventName = this.siteConfigService.siteConfig.eventName;
-
     this.activatedRouter.params.subscribe((params) => {
       const id = params['id'];
-      this.sessionService.getSession(id).subscribe(session => {
-        this.session = session;
-        this.getSpeakerDetails(session.speakers);
-        // dynamically set page titles
-        let pageTitle = this.title.getTitle();
-        if (this.eventName) {
-          pageTitle = this.eventName;
-        }
-        if (this.session.title) {
-          pageTitle += ' :: ' + this.session.title;
-        }
-        this.title.setTitle(pageTitle);
-        this.mySchedule = this.scheduleService.getScheduleSession(this.authService.userId, this.session.id);
-      });
+      this.sessionService.getSession(id)
+        .pipe(switchMap(session => {
+          this.session = session;
+          this.getSpeakerDetails(session.speakers);
+          // dynamically set page titles
+          let pageTitle = this.title.getTitle();
+          if (this.siteConfigService.siteConfig?.eventName) {
+            pageTitle = this.siteConfigService.siteConfig?.eventName;
+          }
+          if (this.session.title) {
+            pageTitle += ' :: ' + this.session.title;
+          }
+          this.title.setTitle(pageTitle);
+          return this.scheduleService.getScheduleSession(this.authService.userId, this.session.id);
+        }))
+        .subscribe(schedule => this.mySchedule = schedule);
     });
   }
 
@@ -86,7 +84,7 @@ export class SessionDetailComponent implements OnInit {
       time: this.session.time,
       tag: this.session.tag ? this.session.tag : null,
       speakers: this.session.speakers,
-      room: this.session.room,
+      room: this.session.room ? this.session.room : null,
       section: this.session.section,
       value: true
     });

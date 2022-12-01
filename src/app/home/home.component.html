@@ -4,10 +4,10 @@
   <section class="view intro-1">
     <div class="full-bg-img flex-center">
       <div class="container text-center banner-title">
-        <div>
-          <h3>Sábado, 10 de dezembro de 2022</h3>
-        </div>
         <a *ngIf="config?.ticketURL" target="_blank" rel="noopener" [href]="config?.ticketURL" class="btn btn-primary btn-lg" rel="nofollow">Garanta seu ingresso agora</a>
+        <div>
+          <h3 class="event-date">Sábado, 10 de dezembro de 2022</h3>
+        </div>
       </div>
     </div>
   </section>
@@ -19,12 +19,17 @@
 
   <!--Section: About-->
   <section class="text-center">
-    <p> Os <strong> GDG DevFests </strong> são grandes eventos de desenvolvedores administrados pela comunidade
-      que estão acontecendo em todo o mundo, focados na comunidade construir e aprender sobre as tecnologias do Google.
-      Cada DevFest é cuidadosamente criado para você pela sua comunidade local do GDG para trazer alto-falantes incríveis,
-      ótimos tópicos e muita diversão! Embora não haja dois eventos exatamente iguais, cada GDG DevFest, em sua essência,
-      ser alimentado por uma crença compartilhada de que quando os desenvolvedores se reúnem para trocar idéias,
-      coisas fantásticas coisas podem acontecer! &nbsp;&nbsp;&nbsp;&nbsp;
+    <p> O <strong>DevFest Sul 2022</strong> será um evento presencial da área de tecnologia que ocorrerá em Florianópolis no dia <strong>10/12/2022</strong>. 
+      <br/>
+      O evento está sendo organizado pelos grupos GDGs e WTMs do Sul do país, conectando os estados do Paraná, 
+      Santa Catarina e Rio Grande do Sul.
+      <br/>
+      As pessoas organizadoras envolvidas são dos capítulos: GDG & WTM Florianópolis, 
+      GDG & WTM Pelotas, GDG & WTM Cascavel, WTM Novo Hamburgo, WTM Curitiba, GDG Curitiba, GDG Maringá, GDG Porto Alegre.
+      <br/>
+      Nós da organização, temos o compromisso de realizar um evento diverso, inclusivo e que será acessível a todos os públicos. 
+      <br/>
+      Teremos um <a target="_blank" rel="noopener" href="http://gdg.rocks/codigodeconduta">código de conduta</a> a ser seguido, com zero tolerância às práticas de racismo, sexismo, capacitismo ou qualquer discriminação de gênero e sexualidade. &nbsp;&nbsp;&nbsp;&nbsp;
     </p>
   </section>
   <section class="text-center" *ngIf="config?.eventGoogle || config?.eventFacebook || config?.eventTwitter || config?.eventInstagram">
@@ -41,7 +46,6 @@
     <!--/.Social buttons-->
   </section>
   <!--Section: About-->
-
   <div class="divider-new pt-5" *ngIf="(speakers$ | async)?.length > 0">
     <h2 class="h2-responsive">Palestrantes</h2>
   </div>
@@ -155,6 +159,25 @@
   </section>
   <!--/Section: Pricing-->
 
+  <!--Section: Volunteers-->
+  <div id="about" class="divider-new">
+    <h2 class="h2-responsive">Seja uma Pessoa Voluntária</h2>
+  </div>
+  <div id="volunteers" class="text-center mb-5">
+    <h5>Venha fazer parte do time do DevFest Sul</h5>
+    <p>
+      Quer contribuir com o evento, sendo uma pessoa voluntária no DevFest Sul? Agora é o seu momento!
+      <br/>
+      Estamos aceitando cadastro de voluntáries até o dia 29/11
+      <br/><br/>
+      <strong>Lembrando que é necessário ter disponibilidade e estar na cidade de Florianópolis nos dias que se propor a colaborar.</strong>
+      <br/><br/>
+      Queremos que esse evento entre pra história, bora fazer parte dela? <a target="_blank" rel="noopener" href="http://gdg.rocks/voluntariessul">Se inscreva!</a>
+    </p>
+  </div>
+
+  <!--Section: Volunteers-->
+  
   <div class="divider-new pt-5" *ngIf="(sponsors$ | async)?.length > 0">
     <h2 class="h2-responsive">Patrocínio</h2>
   </div>

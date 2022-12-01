@@ -12,7 +12,7 @@ export class SectionService {
   constructor(private db: AngularFireDatabase) { }
 
   getSectionList(): Observable<Section[]> {
-    this.sections = this.db.list<Section>(`${firebaseConfig.devfestYear}/sections`, ref => ref);
+    this.sections = this.db.list<Section>(`${firebaseConfig.devfestYear}/sections`, ref => ref.orderByChild('order'));
     return DataBaseHelper.getDataBaseList<Section>(this.sections);
   }
 

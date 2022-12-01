@@ -5,4 +5,5 @@ export class Section {
   title: string;
   timeStamp: any = firebase.database.ServerValue.TIMESTAMP;
   active: boolean = true;
+  order: number;
 }

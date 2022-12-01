@@ -25,7 +25,7 @@
 }
 
 body {
-  background: url("assets/img/background.png") repeat center center;
+  //background: url("assets/img/background.png") repeat center center;
   color: #000000;
 }
 
@@ -48,6 +48,12 @@ body {
   ) !important;
 }
 
+.event-date {
+  color: #fff !important;
+  font-weight: bold;  
+  padding-top: 10px;
+  font-size: 24px;
+}
 .banner-title {
   position: absolute;
   bottom: 85px;

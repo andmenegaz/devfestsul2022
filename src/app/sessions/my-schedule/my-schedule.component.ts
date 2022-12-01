@@ -6,8 +6,10 @@ import { SectionService } from './../shared/section.service';
 import { SessionService } from './../shared/session.service';
 import { Session } from './../shared/session';
 import { Section } from './../shared/section';
+import { Speaker } from './../../speakers/shared/speaker';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-my-schedule',
@@ -18,6 +20,7 @@ export class MyScheduleComponent implements OnInit {
   public sessions$: Observable<Session[]>;
   public sections$: Observable<Section[]>;
   public mySessions$: Observable<any[]>;
+  public speakers: Speaker[];
 
   constructor(
     private sessionService: SessionService,
@@ -29,17 +32,20 @@ export class MyScheduleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.speakerService.getSpeakerList().subscribe(speakers => this.speakers = speakers);
     this.sessions$ = this.sessionService.getSessionList();
     this.sections$ = this.sectionService.getSectionList();
-    this.mySessions$ = this.scheduleService.getScheduleList(this.authService.userId);
+    this.mySessions$ = this.scheduleService.getScheduleList(this.authService.userId)
+        .pipe(map(sessions => sessions.map(session => {
+          return {
+            ...session,
+            speakerNames: session.speakers ? session.speakers.map(speakerId => this.speakers.find(speaker => speaker.id === speakerId)?.name) : null 
+          }
+        })
+      ));
   }
 
   openDetails(session) {
     this.router.navigate([`/sessions/${session.id}`]);
   }
-
-  getSpeakerName(speakerKey) {
-    return this.speakerService.getSpeakerName(speakerKey);
-  }
-
 }
