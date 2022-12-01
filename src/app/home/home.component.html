@@ -167,12 +167,12 @@
       </h3>
       <hr style="width: 60%;" />
       <br />
-      <div class="row">
+      <div class="row" style="align-items: center;">
         <ng-container *ngFor="let sponsor of sponsors">
           <ng-container *ngIf="level.id === sponsor.level">
             <span class="col-md-6" style="padding: 20px 40px; margin: 0 auto;">
               <a [href]="sponsor.websiteLink" target="_blank" rel="noopener">
-                <img [src]="sponsor.logoURL" class="sponsor-img" title="{{ sponsor.name }}" alt="{{ sponsor.name }}" />
+                <img [src]="sponsor.logoURL" class="sponsor-img" [ngStyle]="{'width': level.rank == 1 ? '400px' : level.rank == 2 ? '325px' : level.rank == 3 ? '240px' : level.rank == 4 ? '220px' : '160px' }"  title="{{ sponsor.name }}" alt="{{ sponsor.name }}" />
               </a>
             </span>
           </ng-container>
