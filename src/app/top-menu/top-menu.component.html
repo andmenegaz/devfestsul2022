@@ -18,10 +18,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link waves-light" mdbRippleRadius routerLink="/sponsors">Patrocínio</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbRippleRadius target="_blank" rel="noopener" href="http://gdg.rocks/voluntariessul">Seja Voluntárie</a>
-      </li>      
+      </li>   
       <li class="nav-item" *ngIf="!authService.isLoggedIn">
         <a class="nav-link waves-light" mdbRippleRadius (click)="userLogin()">Login</a>
       </li>

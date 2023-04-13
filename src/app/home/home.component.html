@@ -5,9 +5,6 @@
     <div class="full-bg-img flex-center">
       <div class="container text-center banner-title">
         <a *ngIf="config?.ticketURL" target="_blank" rel="noopener" [href]="config?.ticketURL" class="btn btn-primary btn-lg" rel="nofollow">Garanta seu ingresso agora</a>
-        <div>
-          <h3 class="event-date">Sábado, 29 de Abril de 2023</h3>
-        </div>
       </div>
     </div>
   </section>
@@ -152,27 +149,7 @@
     </div>
 
   </section>
-  <!--/Section: Pricing-->
-
-  <!--Section: Volunteers-->
-  <div id="about" class="divider-new">
-    <h2 class="h2-responsive">Seja uma Pessoa Voluntária</h2>
-  </div>
-  <div id="volunteers" class="text-center mb-5">
-    <h5>Venha fazer parte do time do {{ config?.eventName }}</h5>
-    <p>
-      Quer contribuir com o evento, sendo uma pessoa voluntária no {{ config?.eventName }}? Agora é o seu momento!
-      <br/>
-      Estamos aceitando cadastro de voluntáries até o dia 10/04
-      <br/><br/>
-      <strong>Lembrando que é necessário ter disponibilidade e estar na cidade de Florianópolis nos dias que se propor a colaborar.</strong>
-      <br/><br/>
-      Queremos que esse evento entre pra história, bora fazer parte dela? <a target="_blank" rel="noopener" href="http://gdg.rocks/voluntariessul">Se inscreva!</a>
-    </p>
-  </div>
-
-  <!--Section: Volunteers-->
-  
+  <!--/Section: Pricing-->  
   <div class="divider-new pt-5" *ngIf="(sponsors$ | async)?.length > 0">
     <h2 class="h2-responsive">Patrocínio</h2>
   </div>
