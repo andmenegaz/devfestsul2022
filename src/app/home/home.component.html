@@ -3,8 +3,11 @@
   <!--Intro Section-->
   <section class="view intro-1">
     <div class="full-bg-img flex-center">
+      <img class="banner-desktop" src="../../../assets/img/banner.png">
+      <img class="banner-mobile" src="../../../assets/img/banner-mobile.png">
       <div class="container text-center banner-title">
-        <a *ngIf="config?.ticketURL" target="_blank" rel="noopener" [href]="config?.ticketURL" class="btn btn-primary btn-lg" rel="nofollow">Garanta seu ingresso agora</a>
+        <a *ngIf="config?.ticketURL" target="_blank" rel="noopener" [href]="config?.ticketURL"
+          class="btn btn-primary btn-lg" rel="nofollow">Garanta seu ingresso agora</a>
       </div>
     </div>
   </section>
@@ -16,24 +19,35 @@
 
   <!--Section: About-->
   <section class="text-center">
-    <p> O <strong>{{ config?.eventName }}</strong> será um evento presencial da área de tecnologia que ocorrerá em Florianópolis no dia <strong>29/04/2023</strong>. 
-      <br/>
+    <p> O <strong>{{ config?.eventName }}</strong> será um evento presencial da área de tecnologia que ocorrerá em
+      Florianópolis no dia <strong>29/04/2023</strong>.
+      <br />
       As pessoas organizadoras envolvidas são dos capítulos: {{ config?.groupName}}.
-      <br/>
-      Nós da organização, temos o compromisso de realizar um evento diverso, inclusivo e que será acessível a todos os públicos. 
-      <br/>
-      Teremos um <a target="_blank" rel="noopener" href="http://gdg.rocks/codigodeconduta">código de conduta</a> a ser seguido, com zero tolerância às práticas de racismo, sexismo, capacitismo ou qualquer discriminação de gênero e sexualidade. &nbsp;&nbsp;&nbsp;&nbsp;
+      <br />
+      Nós da organização, temos o compromisso de realizar um evento diverso, inclusivo e que será acessível a todos os
+      públicos.
+      <br />
+      Teremos um <a routerLink="/code-of-conduct">código de conduta</a> a ser seguido, com zero tolerância às práticas de racismo,
+      sexismo, capacitismo ou qualquer discriminação de gênero e sexualidade. &nbsp;&nbsp;&nbsp;&nbsp;
     </p>
   </section>
-  <section class="text-center" *ngIf="config?.eventGoogle || config?.eventFacebook || config?.eventTwitter || config?.eventInstagram">
+  <section class="text-center"
+    *ngIf="config?.eventGoogle || config?.eventFacebook || config?.eventTwitter || config?.eventInstagram">
     <!--Social buttons-->
     <div class="social-section mb-3">
       <h5 class="title mt-3 mb-4">Nos siga nas redes sociais para mais atualizações</h5>
       <ul>
-        <li *ngIf="config?.eventGoogle"><a class="btn-social-all" href="https://plus.google.com/{{ config?.eventGoogle }}" title="Google+" target="_blank" rel="noopener"><i class="fa fa-google-plus"></i></a></li>
-        <li *ngIf="config?.eventFacebook"><a class="btn-social-all" href="https://www.facebook.com/{{ config?.eventFacebook }}" title="Facebook" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a></li>
-        <li *ngIf="config?.eventTwitter"><a class="btn-social-all" href="https://twitter.com/{{ config?.eventTwitter }}" title="Twitter" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
-        <li *ngIf="config?.eventInstagram"><a class="btn-social-all" href="https://www.instagram.com/{{ config?.eventInstagram }}" title="Instagram" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a></li>
+        <li *ngIf="config?.eventGoogle"><a class="btn-social-all"
+            href="https://plus.google.com/{{ config?.eventGoogle }}" title="Google+" target="_blank" rel="noopener"><i
+              class="fa fa-google-plus"></i></a></li>
+        <li *ngIf="config?.eventFacebook"><a class="btn-social-all"
+            href="https://www.facebook.com/{{ config?.eventFacebook }}" title="Facebook" target="_blank"
+            rel="noopener"><i class="fa fa-facebook"></i></a></li>
+        <li *ngIf="config?.eventTwitter"><a class="btn-social-all" href="https://twitter.com/{{ config?.eventTwitter }}"
+            title="Twitter" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
+        <li *ngIf="config?.eventInstagram"><a class="btn-social-all"
+            href="https://www.instagram.com/{{ config?.eventInstagram }}" title="Instagram" target="_blank"
+            rel="noopener"><i class="fa fa-instagram"></i></a></li>
       </ul>
     </div>
     <!--/.Social buttons-->
@@ -46,13 +60,17 @@
   <!--Section: Featured Speakers-->
   <section class="section team-section" *ngIf="(speakers$ | async)?.length > 0 && speakers$ | async as speakers">
     <div class="row text-center">
-      <div *ngFor="let speaker of speakers" class="col-lg-3 col-md-6 mb-r" style="padding-left: 40px; padding-right: 40px; margin: 0 auto;">
+      <div *ngFor="let speaker of speakers" class="col-lg-3 col-md-6 mb-r"
+        style="padding-left: 40px; padding-right: 40px; margin: 0 auto;">
         <div class="avatar" title="{{ speaker.name }}" alt="{{ speaker.name }}">
-          <img *ngIf="!speaker.photoURL" class="rounded-circle z-depth-1" style="background-image: url('../../../assets/img/user-default.png')">
-          <img *ngIf="speaker.photoURL" class="rounded-circle z-depth-1" [ngStyle]="{'background-image': 'url(' + speaker.photoURL + ')'}">
+          <img *ngIf="!speaker.photoURL" class="rounded-circle z-depth-1"
+            style="background-image: url('../../../assets/img/user-default.png')">
+          <img *ngIf="speaker.photoURL" class="rounded-circle z-depth-1"
+            [ngStyle]="{'background-image': 'url(' + speaker.photoURL + ')'}">
         </div>
         <h4><span [innerHTML]="speaker.name"></span></h4>
-        <h6><span [innerHTML]="speaker.title"></span><br /><strong *ngIf="speaker.company">@&nbsp;<span [innerHTML]="speaker.company"></span></strong></h6>
+        <h6><span [innerHTML]="speaker.title"></span><br /><strong *ngIf="speaker.company">@&nbsp;<span
+              [innerHTML]="speaker.company"></span></strong></h6>
       </div>
     </div>
   </section>
@@ -70,7 +88,10 @@
         <p [innerHTML]="config?.venueDescription"></p>
       </div>
       <div class="col-md-6">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3539.007531600082!2d-48.51678368543114!3d-27.50014122458118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9527468b52090801%3A0xb067ed420bbae02b!2sFaculdade%20Cesusc%20(Sede%20SC%20401)!5e0!3m2!1spt-BR!2sbr!4v1679958377031!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3539.007531600082!2d-48.51678368543114!3d-27.50014122458118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9527468b52090801%3A0xb067ed420bbae02b!2sFaculdade%20Cesusc%20(Sede%20SC%20401)!5e0!3m2!1spt-BR!2sbr!4v1679958377031!5m2!1spt-BR!2sbr"
+          width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
@@ -85,11 +106,12 @@
     <h5>Seja legal, respeite e colabore com as pessoas.</h5>
     <p>{{ config?.eventName }} é um evento dedicado a prover um ambiente livre de assédios para todes.</p>
     <p class="pb-5">
-      Antes de participar, reveja o <a href="http://gdg.rocks/codigodeconduta" target="_blank" rel="noopener">Código
+      Antes de participar, reveja o <a routerLink="/code-of-conduct">Código
         de conduta do {{ config?.eventName }}</a>.
       <br />Este Código de Conduta se aplica a todes que irão participar, palestrar, organizar fornecer ou se envolver
       de qualquer forma ao {{ config?.eventName }}.
-      <br />Por favor <a href="mailto:{{ config?.eventEmail }}?subject=Code of Conduct - {{ config?.eventName }}" target="_blank" rel="noopener">entre em contato conosco</a> se tiver alguma dúvida.
+      <br />Por favor <a href="mailto:{{ config?.eventEmail }}?subject=Code of Conduct - {{ config?.eventName }}"
+        target="_blank" rel="noopener">entre em contato conosco</a> se tiver alguma dúvida.
     </p>
   </div>
   <!--Section: CoC-->
@@ -101,7 +123,8 @@
   <!--Section: Pricing-->
   <section class="section" *ngIf="(tickets$ | async)?.length > 0 && tickets$ | async as tickets">
     <div class="row pt-3">
-      <div class="mb-r" *ngFor="let ticket of tickets; let i = index;" [ngClass]="tickets.length > 3 ? 'col-lg-3' : 'col-lg-4'" style="padding: 20px 40px; margin: 0 auto;">
+      <div class="mb-r" *ngFor="let ticket of tickets; let i = index;"
+        [ngClass]="tickets.length > 3 ? 'col-lg-3' : 'col-lg-4'" style="padding: 20px 40px; margin: 0 auto;">
         <div class="card" *ngIf="ticket.active">
           <div class="card-header white-text text-center" [ngClass]="styles[i]">
             <h1 class="dollar">{{ ticket.price }}</h1>
@@ -140,7 +163,8 @@
                 &nbsp;
               </span>
               <div class="text-center ticket-button">
-                <a target="_blank" rel="noopener" [href]="config?.ticketURL" class="btn btn-primary waves-light" rel="nofollow">Buy Ticket</a>
+                <a target="_blank" rel="noopener" [href]="config?.ticketURL" class="btn btn-primary waves-light"
+                  rel="nofollow">Buy Ticket</a>
               </div>
             </div>
           </div>
@@ -149,7 +173,7 @@
     </div>
 
   </section>
-  <!--/Section: Pricing-->  
+  <!--/Section: Pricing-->
   <div class="divider-new pt-5" *ngIf="(sponsors$ | async)?.length > 0">
     <h2 class="h2-responsive">Patrocínio</h2>
   </div>
@@ -167,7 +191,9 @@
           <ng-container *ngIf="level.id === sponsor.level">
             <span class="col-md-6" style="padding: 20px 40px; margin: 0 auto;">
               <a [href]="sponsor.websiteLink" target="_blank" rel="noopener">
-                <img [src]="sponsor.logoURL" class="sponsor-img" [ngStyle]="{'width': level.rank == 1 ? '400px' : level.rank == 2 ? '325px' : level.rank == 3 ? '240px' : level.rank == 4 ? '220px' : '160px' }"  title="{{ sponsor.name }}" alt="{{ sponsor.name }}" />
+                <img [src]="sponsor.logoURL" class="sponsor-img"
+                  [ngStyle]="{'width': level.rank == 1 ? '400px' : level.rank == 2 ? '325px' : level.rank == 3 ? '240px' : level.rank == 4 ? '220px' : '160px' }"
+                  title="{{ sponsor.name }}" alt="{{ sponsor.name }}" />
               </a>
             </span>
           </ng-container>

@@ -2,21 +2,32 @@
 @import "./styles/delorean.scss";
 // @import "./styles/loading.scss";
 
-.intro-1 {
-  background: url("assets/img/banner-mobile.png") no-repeat;
-  background-size: cover;
-  height: 490px;
+.full-bg-img img{
+  width: 100%;
+}
 
-  @media screen and (min-width: 768px) {
-    background: url("assets/img/banner.png") no-repeat;
-    background-size: contain;
-    height: 40vh;
+.btn-lg{
+  padding: 1.2rem !important;
+}
+
+.intro-1{
+  top: 40px;
+}
+
+@media(max-width: 767px){
+  .banner-desktop{
+    display: none !important;
   }
+}
 
-  @media screen and (min-width: 1028px) {
-    background: url("assets/img/banner.png") no-repeat center center;
-    background-size: cover;
-    height: 100vh;
+@media(min-width: 767px){
+  .banner-mobile{
+    display: none !important;
+  }
+  
+  .container.text-center.banner-title{
+    text-align: left !important;
+    left: 22%;
   }
 }
 
@@ -35,17 +46,10 @@ body {
 
 .divider-new:before,
 .divider-new:after {
-  background-size: cover !important;
-
-  background: linear-gradient(
-    90deg,
-    rgba(204, 0, 0, 1) 0%,
-    rgba(215, 66, 6, 1) 20%,
-    rgba(227, 140, 12, 1) 40%,
-    rgba(238, 205, 17, 1) 60%,
-    rgba(21, 255, 40, 1) 80%,
-    rgba(21, 89, 255, 1) 100%
-  ) !important;
+  height: 3px !important;
+  background-size: contain !important;
+  background-image: url("assets/img/line.png") !important;
+  background-color: #fff !important;
 }
 
 .event-date {
@@ -56,14 +60,14 @@ body {
 }
 .banner-title {
   position: absolute;
-  bottom: 85px;
+  bottom: 55px;
 
   @media screen and (min-width: 768px) {
     bottom: 30px;
   }
 
   @media screen and (min-width: 1028px) {
-    bottom: 125px;
+    bottom: 22%;
   }
 
   h3 {
