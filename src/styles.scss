@@ -53,6 +53,10 @@ body {
   font-weight: bold;
   padding-top: 10px;
   font-size: 32px;
+  text-shadow: 0px 1px #FFF;
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
+  }
 }
 .banner-title {
   position: absolute;
